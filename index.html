@@ -2263,6 +2263,226 @@ function abrirDetalheAgendamento(idx) {
         </div>
     </section>
 
+    <section data-tela="orcamentos-e-pedidos" class="hidden">
+      <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <h1 class="font-display text-3xl font-bold text-gray-900">Orçamentos e Pedidos</h1>
+            <p class="text-gray-500 mt-1">Gerencie orçamentos, aprovações e ordens de serviço</p>
+          </div>
+          <button onclick="orcamentos_e_pedidos_novo_orcamento()" class="btn bg-marca-600 hover:bg-marca-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 active:scale-95 transition-all shadow-lg shadow-marca-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            Novo Orçamento
+          </button>
+        </div>
+
+        <div class="grid grid-cols-4 gap-5 mb-8">
+          <div class="card bg-white p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center"><svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+            <div><p class="text-sm text-gray-500">Pendentes</p><p class="text-2xl font-bold text-gray-900" id="stat-pendentes">3</p></div>
+          </div>
+          <div class="card bg-white p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center"><svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div><p class="text-sm text-gray-500">Aguardando</p><p class="text-2xl font-bold text-gray-900" id="stat-aguardando">4</p></div>
+          </div>
+          <div class="card bg-white p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center"><svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><p class="text-sm text-gray-500">Em Execução</p><p class="text-2xl font-bold text-gray-900" id="stat-execucao">2</p></div>
+          </div>
+          <div class="card bg-white p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div><p class="text-sm text-gray-500">Finalizados</p><p class="text-2xl font-bold text-gray-900">7</p></div>
+          </div>
+        </div>
+
+        <div class="card bg-white mb-6">
+          <div class="flex items-center gap-4 p-4 border-b border-gray-100">
+            <div class="relative flex-1">
+              <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <input type="text" id="orcamento-busca" placeholder="Buscar por cliente, veículo ou nº do orçamento..." oninput="orcamentos_e_pedidos_filtrar()" class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent text-sm">
+            </div>
+            <select id="orcamento-filtro-status" onchange="orcamentos_e_pedidos_filtrar()" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500">
+              <option value="todos">Todos os status</option>
+              <option value="pendente">Pendente de envio</option>
+              <option value="aguardando">Aguardando aprovação</option>
+              <option value="aprovado">Aprovado / Em execução</option>
+              <option value="finalizado">Finalizado</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+          <div id="orcamentos-lista"></div>
+          <div id="orcamentos-vazio" class="hidden text-center py-16">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v8.25A2.25 2.25 0 006 16.5h.75m3 0h3.75"/></svg></div>
+            <p class="text-gray-500 text-lg">Nenhum orçamento encontrado</p>
+            <p class="text-gray-400 text-sm mt-1">Tente ajustar os filtros ou crie um novo orçamento</p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        const STATUS_MAP = {
+          pendente: { label: 'Pendente', cls: 'bg-amber-50 text-amber-700 border-amber-200' },
+          aguardando: { label: 'Aguardando', cls: 'bg-blue-50 text-blue-700 border-blue-200' },
+          aprovado: { label: 'Em Execução', cls: 'bg-green-50 text-green-700 border-green-200' },
+          finalizado: { label: 'Finalizado', cls: 'bg-gray-100 text-gray-600 border-gray-200' },
+          cancelado: { label: 'Cancelado', cls: 'bg-red-50 text-red-600 border-red-200' },
+        };
+
+        const ORCAMENTOS = [
+          { id: 'ORC-2847', cliente: 'Roberto da Silva', telefone: '(11) 98765-4321', veiculo: 'Fiat Argo 2022', placa: 'ABC-1D23', servicos: [{n:'Troca de óleo + filtro',p:320},{n:'Alinhamento e balanceamento',p:180}], pecas: [{n:'Filtro de óleo Wix',p:45},{n:'Óleo 5W30 4L',p:120}], mao_obra: 200, valor_total: 865, prazo: '2 dias', data: '2026-01-15', status: 'pendente', obs: 'Cliente prefere óleo semi-sintético' },
+          { id: 'ORC-2846', cliente: 'Transportes Rápidos Ltda', telefone: '(11) 97654-3210', veiculo: 'VW Delivery 2021', placa: 'DEF-4G56', servicos: [{n:'Revisão completa dos freios',p:580},{n:'Troca de pastilhas dianteiras',p:450},{n:'Troca de discos dianteiros',p:720}], pecas: [{n:'Kit pastilhas Bosch',p:380},{n:'Par de discos ventilados',p:650},{n:'Fluido de freio DOT4',p:35}], mao_obra: 400, valor_total: 3215, prazo: '5 dias', data: '2026-01-14', status: 'aguardando', obs: 'Agendar retirada com motorista Carlos' },
+          { id: 'ORC-2845', cliente: 'Ana Paula Mendes', telefone: '(11) 99887-7665', veiculo: 'Honda CG 160 Fan 2023', placa: 'GHI-7J89', servicos: [{n:'Revisão de 5.000 km',p:280}], pecas: [{n:'Filtro de ar',p:55},{n:'Vela de ignição NGK',p:38}], mao_obra: 150, valor_total: 523, prazo: '1 dia', data: '2026-01-14', status: 'pendente', obs: '' },
+          { id: 'ORC-2844', cliente: 'Carlos Eduardo Ferreira', telefone: '(11) 96543-2100', veiculo: 'Toyota Corolla 2020', placa: 'JKL-2M34', servicos: [{n:'Troca de correia dentada',p:650},{n:'Troca de bomba d\'água',p:420},{n:'Troca de óleo + filtros',p:340}], pecas: [{n:'Kit correia dentada Gates',p:580},{n:'Bomba d\'água',p:340},{n:'Filtro de combustível',p:65},{n:'Óleo 5W30 5L',p:150}], mao_obra: 550, valor_total: 3095, prazo: '7 dias', data: '2026-01-13', status: 'aguardando', obs: 'Cliente aguarda aprovação do seguro' },
+          { id: 'ORC-2843', cliente: 'Moto Express Entregas', telefone: '(11) 95432-1098', veiculo: 'Honda Bros 2021', placa: 'MNO-5P67', servicos: [{n:'Reparo no sistema elétrico',p:350},{n:'Troca de bateria',p:0}], pecas: [{n:'Bateria 12V 7Ah',p:220},{n:'Fusível e relé',p:45}], mao_obra: 280, valor_total: 895, prazo: '3 dias', data: '2026-01-13', status: 'aprovado', obs: 'Peça já em estoque' },
+          { id: 'ORC-2842', cliente: 'Fernanda Costa Lima', telefone: '(11) 93210-9876', veiculo: 'Chevrolet Onix 2023', placa: 'PQR-8R12', servicos: [{n:'Polimento e vitrificação',p:450},{n:'Higienização interna',p:200}], pecas: [], mao_obra: 180, valor_total: 830, prazo: '2 dias', data: '2026-01-12', status: 'aguardando', obs: '' },
+          { id: 'ORC-2841', cliente: 'João Pedro Almeida', telefone: '(11) 92100-8765', veiculo: 'Ford Ka 2019', placa: 'STU-1V45', servicos: [{n:'Troca de amortecedores dianteiros',p:580},{n:'Alinhamento',p:0}], pecas: [{n:'Par de amortecedores Monroe',p:890},{n:'Kit coifa e batente',p:120}], mao_obra: 300, valor_total: 1890, prazo: '4 dias', data: '2026-01-11', status: 'aprovado', obs: 'Em andamento — peças já recebidas' },
+          { id: 'ORC-2840', cliente: 'Marcos Vinícius Oliveira', telefone: '(11) 91098-7654', veiculo: 'Yamaha Factor 150 2022', placa: 'VWX-4Y78', servicos: [{n:'Troca de pneu traseiro',p:90},{n:'Calibragem e balanceamento',p:0}], pecas: [{n:'Pneu traseiro 110/70-17',p:420}], mao_obra: 90, valor_total: 600, prazo: '1 dia', data: '2026-01-10', status: 'finalizado', obs: 'Entregue e pago' },
+          { id: 'ORC-2839', cliente: 'Patrícia Nunes Souza', telefone: '(11) 90987-6543', veiculo: 'Hyundai HB20 2021', placa: 'YZA-9B23', servicos: [{n:'Diagnóstico eletrônico completo',p:250},{n:'Reparo no ar-condicionado',p:480}], pecas: [{n:'Compressor de ar-condicionado',p:1650},{n:'Óleo PAG',p:85}], mao_obra: 350, valor_total: 2815, prazo: '5 dias', data: '2026-01-09', status: 'cancelado', obs: 'Cliente desistiu — optou por oficina da região' },
+        ];
+
+        function renderCards(filtrados) {
+          const container = document.getElementById('orcamentos-lista');
+          const vazio = document.getElementById('orcamentos-vazio');
+          if (!filtrados.length) { container.innerHTML = ''; vazio.classList.remove('hidden'); return; }
+          vazio.classList.add('hidden');
+          container.innerHTML = filtrados.map(function(o) {
+            const st = STATUS_MAP[o.status] || STATUS_MAP.pendente;
+            const svcStr = o.servicos.map(function(s){ return s.n; }).join(', ');
+            return '<div onclick="orcamentos_e_pedidos_abrir(\'' + o.id + '\')" class="group border-b border-gray-100 last:border-b-0 px-5 py-4 hover:bg-gray-50 cursor-pointer transition-colors">' +
+              '<div class="flex items-start justify-between gap-4">' +
+                '<div class="flex-1 min-w-0">' +
+                  '<div class="flex items-center gap-3 mb-1">' +
+                    '<span class="text-xs font-mono text-gray-400">' + o.id + '</span>' +
+                    '<span class="badge text-xs px-2.5 py-0.5 rounded-full border ' + st.cls + '">' + st.label + '</span>' +
+                    '<span class="text-xs text-gray-400">' + dataBR(o.data) + '</span>' +
+                  '</div>' +
+                  '<p class="font-semibold text-gray-900 text-sm truncate">' + o.cliente + '</p>' +
+                  '<p class="text-xs text-gray-500 mt-0.5">' + o.veiculo + ' · <span class="font-mono">' + o.placa + '</span></p>' +
+                '</div>' +
+                '<div class="text-right flex-shrink-0">' +
+                  '<p class="font-display font-bold text-lg text-gray-900">' + brl(o.valor_total) + '</p>' +
+                  '<p class="text-xs text-gray-400 mt-1">Prazo: ' + o.prazo + '</p>' +
+                '</div>' +
+              '</div>' +
+              '<div class="flex items-center gap-2 mt-3">' +
+                (o.status === 'pendente' ? '<button onclick="event.stopPropagation();orcamentos_e_pedidos_enviarWhatsapp(\'' + o.id + '\')" class="text-xs bg-green-50 text-green-700 px-3 py-1.5 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</button>' : '') +
+                (o.status === 'aguardando' ? '<button onclick="event.stopPropagation();orcamentos_e_pedidos_converter(\'' + o.id + '\')" class="text-xs bg-marca-50 text-marca-700 px-3 py-1.5 rounded-lg hover:bg-marca-100 transition-colors flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Converter em O.S.</button>' : '') +
+                '<button onclick="event.stopPropagation();orcamentos_e_pedidos_imprimir(\'' + o.id + '\')" class="text-xs bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.367 42.367 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.197-.542-1.197-1.203V18l2.226-2.389M6.34 18l-.365-2.071c-.09-.516-.09-1.064 0-1.58l.365-2.071M17.66 18l.365-2.071c.09-.516.09-1.064 0-1.58l-.365-2.071M12 12.75h.007v.008H12v-.008z"/></svg>PDF</button>' +
+              '</div>' +
+            '</div>';
+          }).join('');
+        }
+
+        window.orcamentos_e_pedidos_filtrar = function() {
+          var busca = document.getElementById('orcamento-busca').value.toLowerCase();
+          var st = document.getElementById('orcamento-filtro-status').value;
+          var f = ORCAMENTOS.filter(function(o) {
+            var matchSt = st === 'todos' || o.status === st;
+            var matchBusca = !busca || o.cliente.toLowerCase().includes(busca) || o.veiculo.toLowerCase().includes(busca) || o.id.toLowerCase().includes(busca) || o.placa.toLowerCase().includes(busca);
+            return matchSt && matchBusca;
+          });
+          renderCards(f);
+        };
+
+        window.orcamentos_e_pedidos_abrir = function(id) {
+          var o = ORCAMENTOS.find(function(x){return x.id === id;}); if (!o) return;
+          var st = STATUS_MAP[o.status] || STATUS_MAP.pendente;
+          var svcsHtml = o.servicos.map(function(s){ return '<li class="flex justify-between py-2 border-b border-gray-100 last:border-0"><span>' + s.n + '</span><span class="font-medium text-gray-700">' + brl(s.p) + '</span></li>'; }).join('');
+          var pcsHtml = o.pecas.length ? '<div class="mt-4"><p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Peças</p><ul class="space-y-1">' + o.pecas.map(function(p){ return '<li class="flex justify-between py-1.5 text-sm"><span>' + p.n + '</span><span class="font-medium">' + brl(p.p) + '</span></li>'; }).join('') + '</ul></div>' : '';
+          var obsHtml = o.obs ? '<div class="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800"><span class="font-semibold">Obs:</span> ' + o.obs + '</div>' : '';
+          var acoes = '';
+          if (o.status === 'pendente') acoes += '<button onclick="orcamentos_e_pedidos_enviarWhatsapp(\'' + o.id + '\');fecharModal();" class="btn bg-green-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-green-700 active:scale-95 transition-all">Enviar por WhatsApp</button>';
+          if (o.status === 'aguardando') acoes += '<button onclick="orcamentos_e_pedidos_converter(\'' + o.id + '\');fecharModal();" class="btn bg-marca-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all">Converter em Ordem de Serviço</button>';
+          if (o.status === 'aprovado') acoes += '<button onclick="orcamentos_e_pedidos_finalizar(\'' + o.id + '\');fecharModal();" class="btn bg-green-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-green-700 active:scale-95 transition-all">Marcar como Finalizado</button>';
+          acoes += '<button onclick="orcamentos_e_pedidos_imprimir(\'' + o.id + '\')" class="btn bg-gray-100 text-gray-700 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-200 active:scale-95 transition-all">Imprimir PDF</button>';
+          var html = '<div class="space-y-5">' +
+            '<div class="flex items-center justify-between">' +
+              '<div><p class="text-xs text-gray-400 font-mono">' + o.id + '</p><p class="font-display text-xl font-bold text-gray-900 mt-0.5">' + o.cliente + '</p></div>' +
+              '<span class="badge px-3 py-1 rounded-full border text-sm ' + st.cls + '">' + st.label + '</span>' +
+            '</div>' +
+            '<div class="bg-gray-50 rounded-xl p-4 grid grid-cols-2 gap-4 text-sm">' +
+              '<div><span class="text-gray-500 text-xs block">Veículo</span><span class="font-medium">' + o.veiculo + '</span></div>' +
+              '<div><span class="text-gray-500 text-xs block">Placa</span><span class="font-mono font-medium">' + o.placa + '</span></div>' +
+              '<div><span class="text-gray-500 text-xs block">Telefone</span><span class="font-medium">' + o.telefone + '</span></div>' +
+              '<div><span class="text-gray-500 text-xs block">Prazo de entrega</span><span class="font-medium">' + o.prazo + '</span></div>' +
+              '<div><span class="text-gray-500 text-xs block">Data do orçamento</span><span class="font-medium">' + dataBR(o.data) + '</span></div>' +
+              '<div><span class="text-gray-500 text-xs block">Valor total</span><span class="font-display font-bold text-marca-700 text-lg">' + brl(o.valor_total) + '</span></div>' +
+            '</div>' +
+            '<div><p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Serviços incluídos</p><ul class="divide-y divide-gray-100 bg-gray-50 rounded-lg px-4">' + svcsHtml + '</ul></div>' +
+            pcsHtml +
+            (o.mao_obra ? '<div class="bg-gray-50 rounded-lg px-4 py-3 flex justify-between text-sm font-medium"><span>Mão de obra</span><span>' + brl(o.mao_obra) + '</span></div>' : '') +
+            obsHtml +
+            '<div class="flex gap-3 pt-2">' + acoes + '</div>' +
+          '</div>';
+          abrirModal(html, 'Detalhe do Orçamento');
+        };
+
+        window.orcamentos_e_pedidos_enviarWhatsapp = function(id) {
+          var o = ORCAMENTOS.find(function(x){return x.id === id;}); if (!o) return;
+          o.status = 'aguardando';
+          orcamentos_e_pedidos_filtrar();
+          toast('Orçamento ' + id + ' enviado por WhatsApp para ' + o.cliente, 'ok');
+        };
+
+        window.orcamentos_e_pedidos_converter = function(id) {
+          var o = ORCAMENTOS.find(function(x){return x.id === id;}); if (!o) return;
+          o.status = 'aprovado';
+          orcamentos_e_pedidos_filtrar();
+          toast('Orçamento ' + id + ' convertido em Ordem de Serviço!', 'ok');
+        };
+
+        window.orcamentos_e_pedidos_imprimir = function(id) {
+          toast('Gerando PDF do orçamento ' + id + '...', 'info');
+        };
+
+        window.orcamentos_e_pedidos_finalizar = function(id) {
+          var o = ORCAMENTOS.find(function(x){return x.id === id;}); if (!o) return;
+          o.status = 'finalizado';
+          orcamentos_e_pedidos_filtrar();
+          toast('Orçamento ' + id + ' finalizado com sucesso!', 'ok');
+        };
+
+        window.orcamentos_e_pedidos_novo_orcamento = function() {
+          var html = '<div class="space-y-5">' +
+            '<div class="grid grid-cols-2 gap-4">' +
+              '<div><label class="block text-sm font-medium text-gray-700 mb-1">Cliente</label><select id="novo-cliente" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500"><option>Roberto da Silva</option><option>Ana Paula Mendes</option><option>Carlos Eduardo Ferreira</option><option>Fernanda Costa Lima</option><option>João Pedro Almeida</option></select></div>' +
+              '<div><label class="block text-sm font-medium text-gray-700 mb-1">Veículo</label><input type="text" id="novo-veiculo" placeholder="Ex: Fiat Argo 2022" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500"></div>' +
+            '</div>' +
+            '<div class="grid grid-cols-2 gap-4">' +
+              '<div><label class="block text-sm font-medium text-gray-700 mb-1">Placa</label><input type="text" id="novo-placa" placeholder="ABC-1D23" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-marca-500"></div>' +
+              '<div><label class="block text-sm font-medium text-gray-700 mb-1">Prazo (dias)</label><input type="number" id="novo-prazo" placeholder="2" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500"></div>' +
+            '</div>' +
+            '<div><label class="block text-sm font-medium text-gray-700 mb-1">Serviços do catálogo</label><select id="novo-servicos" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500"><option value="">Selecione um serviço</option><option value="Troca de óleo + filtro|320">Troca de óleo + filtro — R$ 320,00</option><option value="Alinhamento e balanceamento|180">Alinhamento e balanceamento — R$ 180,00</option><option value="Revisão completa dos freios|580">Revisão completa dos freios — R$ 580,00</option><option value="Revisão de 5.000 km|280">Revisão de 5.000 km — R$ 280,00</option><option value="Troca de correia dentada|650">Troca de correia dentada — R$ 650,00</option><option value="Polimento e vitrificação|450">Polimento e vitrificação — R$ 450,00</option><option value="Troca de amortecedores dianteiros|580">Troca de amortecedores — R$ 580,00</option><option value="Diagnóstico eletrônico|250">Diagnóstico eletrônico — R$ 250,00</option><option value="Higienização interna|200">Higienização interna — R$ 200,00</option><option value="Troca de bateria|0">Troca de bateria — Grátis</option></select></div>' +
+            '<div><label class="block text-sm font-medium text-gray-700 mb-1">Mão de obra estimada (R$)</label><input type="number" id="novo-mao-obra" placeholder="0,00" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500"></div>' +
+            '<div><label class="block text-sm font-medium text-gray-700 mb-1">Observações</label><textarea id="novo-obs" rows="2" placeholder="Informações adicionais..." class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-marca-500 resize-none"></textarea></div>' +
+            '<div class="flex gap-3 pt-2">' +
+              '<button onclick="orcamentos_e_pedidos_salvar_novo()" class="btn flex-1 bg-marca-600 text-white py-3 rounded-xl font-semibold hover:bg-marca-700 active:scale-95 transition-all">Criar Orçamento</button>' +
+              '<button onclick="fecharModal()" class="btn bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 active:scale-95 transition-all">Cancelar</button>' +
+            '</div>' +
+          '</div>';
+          abrirModal(html, 'Novo Orçamento');
+        };
+
+        window.orcamentos_e_pedidos_salvar_novo = function() {
+          var cli = document.getElementById('novo-cliente').value;
+          var vei = document.getElementById('novo-veiculo').value;
+          var plc = document.getElementById('novo-placa').value;
+          var prz = document.getElementById('novo-prazo').value;
+          if (!vei || !plc) { toast('Preencha veículo e placa', 'erro'); return; }
+          var num = String(2848 + ORCAMENTOS.length).padStart(4,'0');
+          var novo = { id: 'ORC-' + num, cliente: cli, telefone: '(11) 00000-0000', veiculo: vei, placa: plc.toUpperCase(), servicos: [], pecas: [], mao_obra: parseFloat(document.getElementById('novo-mao-obra').value) || 0, valor_total: 0, prazo: (prz || 1) + ' dia(s)', data: new Date().toISOString().slice(0,10), status: 'pendente', obs: document.getElementById('novo-obs').value };
+          ORCAMENTOS.unshift(novo);
+          fecharModal();
+          orcamentos_e_pedidos_filtrar();
+          toast('Orçamento ' + novo.id + ' criado com sucesso!', 'ok');
+        };
+
+        orcamentos_e_pedidos_filtrar();
+      })();
+      </script>
+    </section>
+
     <!-- TELAS -->
     </main>
   </div>
