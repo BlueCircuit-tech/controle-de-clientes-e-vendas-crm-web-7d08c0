@@ -1216,6 +1216,439 @@ function abrirDetalheAgendamento(idx) {
 })();
 </script>
 
+    <section data-tela="agendar-servico" class="hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-28">
+    <div class="flex flex-col lg:flex-row gap-6">
+      <div class="flex-1 min-w-0 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+          <div>
+            <nav class="flex items-center gap-2 text-xs text-gray-500 mb-1">
+              <button onclick="mostrarTela('acompanhar-servico')" class="hover:text-slate-700 transition-colors">Serviços</button>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <span class="text-slate-800 font-medium">Agendar Serviço</span>
+            </nav>
+            <h1 class="text-2xl font-display font-bold text-slate-900 tracking-tight">Agendar Serviço</h1>
+            <p class="text-sm text-gray-500 mt-0.5">Selecione o veículo, serviço e horário para o atendimento.</p>
+          </div>
+          <select id="selOficina" onchange="agendar_servico_mudarOficina()" class="h-9 pl-3 pr-8 text-sm bg-white border border-gray-200 rounded-lg text-slate-700 focus:ring-2 focus:ring-marca-500 focus:border-marca-500 transition-shadow cursor-pointer">
+            <option value="mecanica">Auto Mecânica Central - São Paulo/SP</option>
+            <option value="eletrica">Auto Elétrica Norte - São Paulo/SP</option>
+            <option value="funilaria">Funilaria & Pintura Leste - São Paulo/SP</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-1 text-xs">
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-marca-600 text-white"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Veículo</div>
+          <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-marca-600 text-white"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Serviço</div>
+          <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-marca-600 text-white"><span class="w-1.5 h-1.5 rounded-full bg-white"></span>Data/Hora</div>
+          <svg class="w-3.5 h-3.5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <div id="step-confirmacao" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500"><span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>Confirmação</div>
+        </div>
+
+        <div class="space-y-5">
+          <div class="card p-5">
+            <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-marca-600 text-white text-xs flex items-center justify-center">1</span>Selecione o Veículo</h2>
+            <div id="listaVeiculos" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3"></div>
+          </div>
+
+          <div class="card p-5">
+            <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-marca-600 text-white text-xs flex items-center justify-center">2</span>Selecione o Serviço</h2>
+            <div id="listaServicos" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+          </div>
+
+          <div class="card p-5">
+            <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-marca-600 text-white text-xs flex items-center justify-center">3</span>Data e Horário</h2>
+            <div class="flex flex-col sm:flex-row gap-5">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-between mb-3">
+                  <button onclick="agendar_servico_mesAnterior()" class="p-1 rounded hover:bg-gray-100 transition-colors"><svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                  <span id="calMesAno" class="text-sm font-semibold text-slate-800"></span>
+                  <button onclick="agendar_servico_proximoMes()" class="p-1 rounded hover:bg-gray-100 transition-colors"><svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+                </div>
+                <div class="grid grid-cols-7 gap-0.5 text-center mb-1"><div class="text-[10px] font-semibold text-gray-400 py-1">DOM</div><div class="text-[10px] font-semibold text-gray-400 py-1">SEG</div><div class="text-[10px] font-semibold text-gray-400 py-1">TER</div><div class="text-[10px] font-semibold text-gray-400 py-1">QUA</div><div class="text-[10px] font-semibold text-gray-400 py-1">QUI</div><div class="text-[10px] font-semibold text-gray-400 py-1">SEX</div><div class="text-[10px] font-semibold text-red-400 py-1">SÁB</div></div>
+                <div id="calDias" class="grid grid-cols-7 gap-0.5 text-center"></div>
+              </div>
+              <div class="flex-1 min-w-[200px]">
+                <p id="horarioLabel" class="text-sm font-semibold text-slate-700 mb-2">Horários Disponíveis</p>
+                <div id="listaHorarios" class="flex flex-wrap gap-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-marca-600 text-white text-xs flex items-center justify-center">4</span>Observações</h2>
+            <textarea id="campoObservacoes" rows="3" placeholder="Descreva o problema relatado pelo cliente, barulhos, sintomas, detalhes relevantes para o mecânico..." class="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg resize-none focus:ring-2 focus:ring-marca-500 focus:border-marca-500 transition-shadow placeholder:text-gray-400"></textarea>
+            <div id="obsTags" class="flex flex-wrap gap-1.5 mt-2.5"></div>
+          </div>
+
+          <div class="card p-5">
+            <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-marca-600 text-white text-xs flex items-center justify-center">5</span>Fotos do Veículo</h2>
+            <div class="flex items-start gap-3">
+              <button onclick="agendar_servico_uploadFoto()" class="flex-shrink-0 w-20 h-20 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-marca-400 hover:bg-marca-50/50 transition-all cursor-pointer group">
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-marca-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <span class="text-[10px] text-gray-400 group-hover:text-marca-500 mt-0.5 transition-colors">Adicionar</span>
+              </button>
+              <div id="fotosContainer" class="flex gap-2 overflow-x-auto pb-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block w-80 flex-shrink-0">
+        <div class="sticky top-6 space-y-4">
+          <div class="card p-5">
+            <h3 class="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-3">Resumo do Agendamento</h3>
+            <div id="resumoVeiculo" class="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg mb-2.5"><div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-sm font-bold text-slate-600 flex-shrink-0">---</div><div class="min-w-0"><p class="text-sm font-medium text-slate-800 truncate">Nenhum veículo</p><p class="text-xs text-gray-400">Selecione acima</p></div></div>
+            <div id="resumoServico" class="flex items-center gap-3 p-2.5 bg-gray-50 rounded-lg mb-2.5"><div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div class="min-w-0"><p class="text-sm font-medium text-slate-800 truncate">Nenhum serviço</p><p class="text-xs text-gray-400">Selecione acima</p></div></div>
+            <div class="border-t border-gray-100 pt-2.5 space-y-2 text-sm">
+              <div class="flex justify-between text-gray-600"><span>Data</span><span id="resData" class="text-slate-800">—</span></div>
+              <div class="flex justify-between text-gray-600"><span>Horário</span><span id="resHora" class="text-slate-800">—</span></div>
+              <div class="flex justify-between text-gray-600"><span>Duração estimada</span><span id="resDuracao" class="text-slate-800">—</span></div>
+              <div class="border-t border-gray-100 pt-2 mt-2"></div>
+              <div class="flex justify-between text-gray-600"><span>Serviço</span><span id="resPreco" class="text-slate-800">—</span></div>
+              <div class="flex justify-between text-gray-600"><span>Peças</span><span id="resPecas" class="text-slate-800">Inclusas</span></div>
+              <div class="flex justify-between text-gray-600"><span>Garantia</span><span id="resGarantia" class="text-slate-800">90 dias</span></div>
+              <div class="border-t border-gray-100 pt-2 mt-2"></div>
+              <div class="flex justify-between font-semibold text-base"><span class="text-slate-800">Total Estimado</span><span id="resTotal" class="text-marca-600">R$ 0,00</span></div>
+            </div>
+          </div>
+          <button id="btnConfirmar" onclick="agendar_servico_confirmar()" disabled class="w-full py-3 rounded-lg bg-marca-600 text-white font-semibold text-sm transition-all duration-200 hover:bg-marca-700 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 flex items-center justify-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Confirmar Agendamento</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-gray-200 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="mobileBar" class="hidden py-3">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-xs text-gray-500">Total Estimado</p>
+            <p id="mobTotal" class="text-lg font-bold text-marca-600">R$ 0,00</p>
+          </div>
+          <button id="mobBtnConfirmar" onclick="agendar_servico_confirmar()" disabled class="px-6 py-2.5 rounded-lg bg-marca-600 text-white font-semibold text-sm transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalPagamento" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="agendar_servico_fecharPagamento()"></div>
+    <div class="relative bg-white rounded-xl shadow-2xl w-full max-w-md p-6 space-y-5">
+      <div class="flex items-center justify-between"><h3 class="text-lg font-display font-bold text-slate-900">Pagamento de Sinal</h3><button onclick="agendar_servico_fecharPagamento()" class="p-1 rounded hover:bg-gray-100 transition-colors"><svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button></div>
+      <p class="text-sm text-gray-500">O sinal garante o horário. O restante é pago no término do serviço.</p>
+      <div class="bg-marca-50 border border-marca-100 rounded-lg p-3 flex justify-between items-center"><span class="text-sm text-marca-800 font-medium">Valor do sinal (30%)</span><span id="valorSinal" class="text-base font-bold text-marca-700">R$ 0,00</span></div>
+      <div class="space-y-2.5">
+        <p class="text-sm font-semibold text-slate-700">Forma de Pagamento</p>
+        <button onclick="agendar_servico_pagarPix()" class="w-full flex items-center gap-3 p-3.5 border-2 border-gray-200 rounded-lg hover:border-marca-400 hover:bg-marca-50/30 transition-all active:scale-[0.98]">
+          <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></div>
+          <div class="text-left"><p class="text-sm font-semibold text-slate-800">PIX</p><p class="text-xs text-gray-500">Aprovação instantânea</p></div>
+        </button>
+        <button onclick="agendar_servico_pagarCartao()" class="w-full flex items-center gap-3 p-3.5 border-2 border-gray-200 rounded-lg hover:border-marca-400 hover:bg-marca-50/30 transition-all active:scale-[0.98]">
+          <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg></div>
+          <div class="text-left"><p class="text-sm font-semibold text-slate-800">Cartão de Crédito</p><p class="text-xs text-gray-500">Visa, Mastercard, Elo</p></div>
+        </button>
+      </div>
+      <button onclick="agendar_servico_pularPagamento()" class="w-full text-center text-sm text-gray-500 hover:text-slate-700 py-1 transition-colors">Pular e pagar na oficina</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const VEICULOS = [
+        { id: 'v1', modelo: 'Honda Civic EXL', placa: 'BRA2E19', ano: '2022', cor: 'Prata', cliente: 'Maria Fernanda Costa', ini: 'MC', corIni: 'bg-blue-500', obs: '' },
+        { id: 'v2', modelo: 'Toyota Corolla Altis', placa: 'CBA3F45', ano: '2021', cor: 'Preto', cliente: 'João Pedro Almeida', ini: 'JA', corIni: 'bg-emerald-500', obs: '' },
+        { id: 'v3', modelo: 'Volkswagen Gol G7', placa: 'DEF4A12', ano: '2020', cor: 'Branco', cliente: 'Ana Beatriz Souza', ini: 'AS', corIni: 'bg-amber-500', obs: '' },
+        { id: 'v4', modelo: 'Fiat Toro Volcano', placa: 'GHI5B33', ano: '2023', cor: 'Vermelho', cliente: 'Carlos Eduardo Lima', ini: 'CL', corIni: 'bg-rose-500', obs: '' },
+        { id: 'v5', modelo: 'Hyundai HB20S Premium', placa: 'JKL6C78', ano: '2021', cor: 'Azul', cliente: 'Patricia Mendes', ini: 'PM', corIni: 'bg-violet-500', obs: '' },
+        { id: 'v6', modelo: 'Chevrolet Onix Plus', placa: 'MNO7D54', ano: '2022', cor: 'Cinza', cliente: 'Ricardo Santos', ini: 'RS', corIni: 'bg-orange-500', obs: '' }
+      ];
+      const SERVICOS = [
+        { id: 's1', nome: 'Troca de Óleo e Filtro', cat: 'Manutenção Preventiva', preco: 189.90, pecas: 'Inclusas', garantia: '90 dias', dur: '1h30', icon: 'oil' },
+        { id: 's2', nome: 'Revisão Completa', cat: 'Manutenção Preventiva', preco: 449.90, pecas: 'Verificar', garantia: '180 dias', dur: '3h', icon: 'check' },
+        { id: 's3', nome: 'Troca de Pastilhas de Freio', cat: 'Freios', preco: 320.00, pecas: 'Inclusas', garantia: '90 dias', dur: '2h', icon: 'brake' },
+        { id: 's4', nome: 'Alinhamento e Balanceamento', cat: 'Suspensão', preco: 159.90, pecas: 'N/A', garantia: '30 dias', dur: '1h', icon: 'wheel' },
+        { id: 's5', nome: 'Reparo no Sistema Elétrico', cat: 'Elétrica', preco: 280.00, pecas: 'Sob consulta', garantia: '90 dias', dur: '2h30', icon: 'bolt' },
+        { id: 's6', nome: 'Funilaria e Pintura Parcial', cat: 'Funilaria', preco: 850.00, pecas: 'Inclusas', garantia: '1 ano', dur: '4h', icon: 'paint' }
+      ];
+      const HORARIOS = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00'];
+      const TAGS = ['Barulho estranho no motor','Vazamento de óleo','Freios falhando','Luz de falha acesa','Problema na suspensão','Ar condicionado não funciona','Troca de pneus','Problema na transmissão'];
+      const ICONS = {
+        oil: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>',
+        check: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+        brake: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke-width="1.5"/></svg>',
+        wheel: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18m-9-9h18m-3-3h.01M12 12a4.5 4.5 0 014.5-4.5M5.636 5.636a4.5 4.5 0 014.243 4.243m11.314 0a4.5 4.5 0 01-4.243 4.243"/></svg>',
+        bolt: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
+        paint: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>'
+      };
+
+      let state = { veiculo: null, servico: null, data: null, hora: null, mes: new Date().getMonth(), ano: new Date().getFullYear(), fotos: [], tagsSelecionadas: [] };
+
+      function agendar_servico_render(){
+        agendar_servico_renderVeiculos();
+        agendar_servico_renderServicos();
+        agendar_servico_renderCalendario();
+        agendar_servico_renderHorarios();
+        agendar_servico_renderTags();
+        agendar_servico_renderFotos();
+        agendar_servico_atualizarResumo();
+        agendar_servico_atualizarBarra();
+      }
+
+      function agendar_servico_renderVeiculos(){
+        const c = document.getElementById('listaVeiculos');
+        c.innerHTML = VEICULOS.map(v => `<button onclick="agendar_servico_selecionarVeiculo('${v.id}')" id="vbtn-${v.id}" class="flex items-center gap-3 p-3 border-2 rounded-lg text-left transition-all duration-200 ${state.veiculo === v.id ? 'border-marca-500 bg-marca-50/50 ring-2 ring-marca-200' : 'border-gray-200 hover:border-marca-300 hover:shadow-sm'}">
+          <div class="w-10 h-10 rounded-full ${v.corIni} text-white flex items-center justify-center text-xs font-bold flex-shrink-0">${v.ini}</div>
+          <div class="min-w-0 flex-1"><p class="text-sm font-semibold text-slate-800 truncate">${v.modelo}</p><p class="text-xs text-gray-500">${v.placa} · ${v.ano} · ${v.cor}</p></div>
+          ${state.veiculo === v.id ? '<svg class="w-5 h-5 text-marca-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' : ''}
+        </button>`).join('');
+      }
+
+      function agendar_servico_renderServicos(){
+        const c = document.getElementById('listaServicos');
+        const catColors = {'Manutenção Preventiva':'bg-blue-50 text-blue-700 border-blue-200','Freios':'bg-red-50 text-red-700 border-red-200','Suspensão':'bg-amber-50 text-amber-700 border-amber-200','Elétrica':'bg-violet-50 text-violet-700 border-violet-200','Funilaria':'bg-teal-50 text-teal-700 border-teal-200'};
+        c.innerHTML = SERVICOS.map(s => `<button onclick="agendar_servico_selecionarServico('${s.id}')" id="sbtn-${s.id}" class="flex items-center gap-3.5 p-3.5 border-2 rounded-lg text-left transition-all duration-200 ${state.servico === s.id ? 'border-marca-500 bg-marca-50/50 ring-2 ring-marca-200' : 'border-gray-200 hover:border-marca-300 hover:shadow-sm'}">
+          <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 ${state.servico === s.id ? 'text-marca-600' : 'text-gray-500'}">${ICONS[s.icon]}</div>
+          <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-slate-800 truncate">${s.nome}</p><div class="flex items-center gap-2 mt-0.5"><span class="text-[10px] px-1.5 py-0.5 rounded border ${catColors[s.cat] || 'bg-gray-50 text-gray-600 border-gray-200'}">${s.cat}</span><span class="text-[10px] text-gray-400">${s.dur}</span></div></div>
+          <div class="text-right flex-shrink-0"><p class="text-sm font-bold ${state.servico === s.id ? 'text-marca-700' : 'text-slate-800'}">${brl(s.preco)}</p><p class="text-[10px] text-gray-400">${s.garantia}</p></div>
+        </button>`).join('');
+      }
+
+      function agendar_servico_renderCalendario(){
+        const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+        document.getElementById('calMesAno').textContent = `${meses[state.mes]} ${state.ano}`;
+        const hoje = new Date(); hoje.setHours(0,0,0,0);
+        const primeiro = new Date(state.ano, state.mes, 1);
+        const ultimo = new Date(state.ano, state.mes + 1, 0);
+        const inicio = primeiro.getDay();
+        const cells = [];
+        for(let i=0;i<inicio;i++) cells.push('<div></div>');
+        const booked = ['2025-07-10','2025-07-10','2025-07-12','2025-07-14','2025-07-15'];
+        for(let d=1;d<=ultimo.getDate();d++){
+          const date = new Date(state.ano, state.mes, d); date.setHours(0,0,0,0);
+          const isPast = date < hoje; const isToday = date.getTime() === hoje.getTime();
+          const ds = `${state.ano}-${String(state.mes+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          const isBooked = booked.includes(ds);
+          const isSel = state.data && state.data.getTime() === date.getTime();
+          const isWeekend = date.getDay() === 0;
+          if(isPast || isBooked) cells.push(`<button disabled class="w-8 h-8 text-xs rounded-md text-gray-300 cursor-not-allowed line-through">${d}</button>`);
+          else if(isWeekend) cells.push(`<button disabled class="w-8 h-8 text-xs rounded-md text-gray-300 cursor-not-allowed">${d}</button>`);
+          else cells.push(`<button onclick="agendar_servico_selecionarData(${state.ano},${state.mes},${d})" class="w-8 h-8 text-xs rounded-md transition-all duration-200 ${isSel ? 'bg-marca-600 text-white shadow-sm font-bold' : isToday ? 'border-2 border-marca-400 text-marca-700 font-bold hover:bg-marca-50' : 'text-gray-700 hover:bg-marca-50 hover:text-marca-700'}">${d}</button>`);
+        }
+        document.getElementById('calDias').innerHTML = cells.join('');
+      }
+
+      function agendar_servico_renderHorarios(){
+        const c = document.getElementById('listaHorarios');
+        const label = document.getElementById('horarioLabel');
+        if(!state.data){ label.textContent = 'Horários Disponíveis'; c.innerHTML = '<p class="text-xs text-gray-400 italic col-span-full">Selecione uma data no calendário</p>'; return; }
+        const ds = state.data.toISOString().split('T')[0];
+        const ocupados = ds === '2025-07-07' ? ['08:00','10:00','14:00'] : ds === '2025-07-09' ? ['09:00','11:00','15:00'] : ds === '2025-07-10' ? ['08:00','13:00','16:00'] : ds === '2025-07-14' ? ['09:00','14:00'] : [];
+        label.textContent = `Horários — ${dataBR(state.data.toISOString())}`;
+        c.innerHTML = HORARIOS.map(h => {
+          const ocup = ocupados.includes(h);
+          return `<button onclick="${ocup ? '' : `agendar_servico_selecionarHora('${h}')`}" disabled="${ocup}" class="px-3 py-1.5 text-xs font-medium rounded-md border transition-all duration-200 ${ocup ? 'bg-gray-100 text-gray-300 border-gray-200 cursor-not-allowed line-through' : state.hora === h ? 'bg-marca-600 text-white border-marca-600 shadow-sm' : 'border-gray-200 text-slate-700 hover:border-marca-400 hover:bg-marca-50'}">${h}</button>`;
+        }).join('');
+      }
+
+      function agendar_servico_renderTags(){
+        const c = document.getElementById('obsTags');
+        c.innerHTML = TAGS.map(t => `<button onclick="agendar_servico_toggleTag(this,'${t}')" class="text-[11px] px-2.5 py-1 rounded-full border border-gray-200 text-gray-600 hover:border-marca-300 hover:text-marca-700 transition-all">${t}</button>`).join('');
+      }
+
+      function agendar_servico_renderFotos(){
+        const c = document.getElementById('fotosContainer');
+        if(!state.fotos.length){ c.innerHTML = ''; return; }
+        c.innerHTML = state.fotos.map((f,i) => `<div class="relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden group"><div class="w-full h-full ${f.cor} flex items-center justify-center"><svg class="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center"><button onclick="agendar_servico_removerFoto(${i})" class="opacity-0 group-hover:opacity-100 transition-opacity w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg></button></div></div>`).join('');
+      }
+
+      function agendar_servico_selecionarVeiculo(id){
+        state.veiculo = id; agendar_servico_render(); agendar_servico_atualizarResumo();
+      }
+      function agendar_servico_selecionarServico(id){
+        state.servico = id; agendar_servico_render(); agendar_servico_atualizarResumo();
+      }
+      function agendar_servico_selecionarData(a,m,d){
+        state.data = new Date(a,m,d); state.hora = null; agendar_servico_render(); agendar_servico_atualizarResumo();
+      }
+      function agendar_servico_selecionarHora(h){
+        state.hora = h; agendar_servico_render(); agendar_servico_atualizarResumo();
+      }
+      function agendar_servico_mesAnterior(){
+        state.mes--; if(state.mes<0){state.mes=11;state.ano--;} agendar_servico_renderCalendario();
+      }
+      function agendar_servico_proximoMes(){
+        state.mes++; if(state.mes>11){state.mes=0;state.ano++;} agendar_servico_renderCalendario();
+      }
+      function agendar_servico_toggleTag(btn,t){
+        const i = state.tagsSelecionadas.indexOf(t);
+        if(i>-1){ state.tagsSelecionadas.splice(i,1); btn.classList.remove('bg-marca-100','border-marca-400','text-marca-800','font-medium'); btn.classList.add('border-gray-200','text-gray-600'); }
+        else { state.tagsSelecionadas.push(t); btn.classList.remove('border-gray-200','text-gray-600'); btn.classList.add('bg-marca-100','border-marca-400','text-marca-800','font-medium'); }
+      }
+      function agendar_servico_uploadFoto(){
+        const fakes = [{nome:'Dianteira Direita',cor:'from-slate-300 to-slate-500'},{nome:'Traseira Esquerda',cor:'from-gray-400 to-gray-600'},{nome:'Parachoque',cor:'from-zinc-300 to-zinc-500'},{nome:'Lataria',cor:'from-stone-300 to-stone-500'}];
+        const f = fakes[state.fotos.length % fakes.length];
+        state.fotos.push(f); agendar_servico_renderFotos(); agendar_servico_atualizarResumo(); toast('Foto adicionada com sucesso','ok');
+      }
+      function agendar_servico_removerFoto(i){ state.fotos.splice(i,1); agendar_servico_renderFotos(); agendar_servico_atualizarResumo(); }
+      function agendar_servico_mudarOficina(){ toast('Oficina alterada','info'); }
+
+      function agendar_servico_atualizarResumo(){
+        const v = state.veiculo ? VEICULOS.find(x=>x.id===state.veiculo) : null;
+        const s = state.servico ? SERVICOS.find(x=>x.id===state.servico) : null;
+        const rv = document.getElementById('resumoVeiculo');
+        if(v){ rv.innerHTML = `<div class="w-10 h-10 rounded-full ${v.corIni} text-white flex items-center justify-center text-sm font-bold flex-shrink-0">${v.ini}</div><div class="min-w-0"><p class="text-sm font-medium text-slate-800 truncate">${v.modelo}</p><p class="text-xs text-gray-500">${v.placa}</p></div>`; }
+        const rs = document.getElementById('resumoServico');
+        if(s){ rs.innerHTML = `<div class="w-10 h-10 rounded-lg bg-marca-100 flex items-center justify-center flex-shrink-0 text-marca-600">${ICONS[s.icon]}</div><div class="min-w-0"><p class="text-sm font-medium text-slate-800 truncate">${s.nome}</p><p class="text-xs text-gray-500">${s.dur} · ${s.garantia}</p></div>`; }
+        document.getElementById('resData').textContent = state.data ? dataBR(state.data.toISOString()) : '—';
+        document.getElementById('resHora').textContent = state.hora || '—';
+        document.getElementById('resDuracao').textContent = s ? s.dur : '—';
+        document.getElementById('resPreco').textContent = s ? brl(s.preco) : '—';
+        document.getElementById('resGarantia').textContent = s ? s.garantia : '—';
+        const total = s ? s.preco : 0;
+        const fmt = brl(total);
+        document.getElementById('resTotal').textContent = fmt;
+        document.getElementById('mobTotal').textContent = fmt;
+        const canConfirm = !!(state.veiculo && state.servico && state.data && state.hora);
+        const b = document.getElementById('btnConfirmar'); b.disabled = !canConfirm;
+        const mb = document.getElementById('mobBtnConfirmar'); mb.disabled = !canConfirm;
+        if(canConfirm){
+          document.getElementById('step-confirmacao').className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-marca-100 text-marca-700';
+          document.getElementById('step-confirmacao').innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-marca-600"></span>Pronto';
+        }
+      }
+
+      function agendar_servico_atualizarBarra(){
+        const hasSelection = !!(state.veiculo && state.servico && state.data && state.hora);
+        const bar = document.getElementById('mobileBar');
+        if(hasSelection){ bar.classList.remove('hidden'); bar.classList.add('lg:hidden'); }
+        else { bar.classList.add('hidden'); bar.classList.remove('lg:hidden'); }
+      }
+
+      function agendar_servico_confirmar(){
+        if(!state.veiculo || !state.servico || !state.data || !state.hora){ toast('Preencha todos os campos obrigatórios','erro'); return; }
+        const v = VEICULOS.find(x=>x.id===state.veiculo), s = SERVICOS.find(x=>x.id===state.servico);
+        const obs = document.getElementById('campoObservacoes').value;
+        const dataStr = dataBR(state.data.toISOString());
+        abrirModal(`
+          <div class="space-y-4">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-2.5">
+              <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <p class="text-sm text-green-800">Agendamento confirmado! O cliente receberá uma confirmação por e-mail e WhatsApp.</p>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 space-y-2 text-sm">
+              <div class="flex justify-between"><span class="text-gray-500">Veículo</span><span class="font-medium text-slate-800">${v.modelo} · ${v.placa}</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">Serviço</span><span class="font-medium text-slate-800">${s.nome}</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">Data</span><span class="font-medium text-slate-800">${dataStr} às ${state.hora}</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">Valor</span><span class="font-bold text-marca-700">${brl(s.preco)}</span></div>
+            </div>
+            <p class="text-xs text-gray-400">Cliente: ${v.cliente} · Oficina: Auto Mecânica Central · Orçamento #AG${Date.now().toString(36).toUpperCase().slice(-6)}</p>
+            <div class="flex gap-2 pt-1">
+              <button onclick="agendar_servico_pagamento()" class="flex-1 py-2.5 rounded-lg bg-marca-600 text-white text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all">Pagar Sinal (PIX/Cartão)</button>
+              <button onclick="fecharModal();mostrarTela('acompanhar-servico')" class="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-700 hover:bg-gray-50 active:scale-95 transition-all">Acompanhar</button>
+            </div>
+          </div>
+        `, 'Agendamento Confirmado');
+      }
+
+      function agendar_servico_pagamento(){
+        fecharModal();
+        setTimeout(() => {
+          const s = SERVICOS.find(x=>x.id===state.servico);
+          document.getElementById('valorSinal').textContent = brl(s.preco * 0.3);
+          document.getElementById('modalPagamento').classList.remove('hidden');
+        }, 300);
+      }
+
+      function agendar_servico_fecharPagamento(){
+        document.getElementById('modalPagamento').classList.add('hidden');
+      }
+
+      function agendar_servico_pagarPix(){
+        agendar_servico_fecharPagamento();
+        setTimeout(() => {
+          abrirModal(`
+            <div class="space-y-4 text-center">
+              <div class="w-40 h-40 mx-auto bg-white border-2 border-gray-200 rounded-xl flex items-center justify-center">
+                <div class="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <div class="grid grid-cols-5 gap-0.5">
+                    ${Array(25).fill(0).map(()=>Math.random()>0.5?'<div class="w-3 h-3 bg-gray-800 rounded-sm"></div>':'<div class="w-3 h-3 bg-transparent"></div>').join('')}
+                  </div>
+                </div>
+              </div>
+              <p class="text-sm text-gray-600">Escaneie o QR Code com o app do seu banco</p>
+              <p class="text-xs text-gray-400">O pagamento é confirmado automaticamente</p>
+              <div class="bg-marca-50 border border-marca-100 rounded-lg p-3">
+                <p class="text-xs text-marca-700">Chave PIX: (11) 99999-8888</p>
+              </div>
+              <button onclick="agendar_servico_confirmarPagamento()" class="w-full py-2.5 rounded-lg bg-marca-600 text-white text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all">Confirmar Pagamento</button>
+            </div>
+          `, 'Pagamento via PIX');
+        }, 300);
+      }
+
+      function agendar_servico_pagarCartao(){
+        agendar_servico_fecharPagamento();
+        setTimeout(() => {
+          abrirModal(`
+            <div class="space-y-4">
+              <div class="flex gap-2 mb-4">
+                <div class="flex-1 py-2 rounded-lg border-2 border-marca-500 bg-marca-50 text-center"><span class="text-sm font-semibold text-marca-700">💳 Crédito</span></div>
+                <div class="flex-1 py-2 rounded-lg border border-gray-200 text-center cursor-pointer hover:border-marca-300 transition-colors"><span class="text-sm text-gray-600">Débito</span></div>
+              </div>
+              <div class="space-y-3">
+                <div><label class="text-xs text-gray-500 block mb-1">Número do Cartão</label><input type="text" placeholder="0000 0000 0000 0000" class="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-marca-500 focus:border-marca-500" maxlength="19" oninput="this.value=this.value.replace(/[^\\d ]/g,'').replace(/(\\d{4})(?=\\d)/g,'$1 ').trim()"></div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div><label class="text-xs text-gray-500 block mb-1">Validade</label><input type="text" placeholder="MM/AA" class="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-marca-500 focus:border-marca-500" maxlength="5" oninput="if(this.value.length===2&&!this.value.includes('/'))this.value+='/'"></div>
+                  <div><label class="text-xs text-gray-500 block mb-1">CVV</label><input type="text" placeholder="000" class="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-marca-500 focus:border-marca-500" maxlength="4"></div>
+                </div>
+                <div><label class="text-xs text-gray-500 block mb-1">Nome no Cartão</label><input type="text" placeholder="NOME COMPLETO" class="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-marca-500 focus:border-marca-500 uppercase" style="text-transform:uppercase"></div>
+                <div class="flex items-center gap-2 text-xs text-gray-500"><input type="checkbox" id="parcelas" class="rounded border-gray-300 text-marca-600"><label for="parcelas">Parcelar em até 3x sem juros</label></div>
+              </div>
+              <button onclick="agendar_servico_confirmarPagamento()" class="w-full py-2.5 rounded-lg bg-marca-600 text-white text-sm font-semibold hover:bg-marca-700 active:scale-95 transition-all">Pagar ${brl(SERVICOS.find(x=>x.id===state.servico).preco*0.3)}</button>
+            </div>
+          `, 'Pagamento com Cartão');
+        }, 300);
+      }
+
+      function agendar_servico_pularPagamento(){
+        agendar_servico_fecharPagamento();
+        setTimeout(() => { toast('Pagamento será realizado na oficina','info'); mostrarTela('acompanhar-servico'); }, 300);
+      }
+
+      function agendar_servico_confirmarPagamento(){
+        fecharModal();
+        setTimeout(() => {
+          toast('Pagamento confirmado! Agendamento garantido.','ok');
+          setTimeout(() => mostrarTela('acompanhar-servico'), 1500);
+        }, 300);
+      }
+
+      window.agendar_servico_selecionarVeiculo = agendar_servico_selecionarVeiculo;
+      window.agendar_servico_selecionarServico = agendar_servico_selecionarServico;
+      window.agendar_servico_selecionarData = agendar_servico_selecionarData;
+      window.agendar_servico_selecionarHora = agendar_servico_selecionarHora;
+      window.agendar_servico_mesAnterior = agendar_servico_mesAnterior;
+      window.agendar_servico_proximoMes = agendar_servico_proximoMes;
+      window.agendar_servico_toggleTag = agendar_servico_toggleTag;
+      window.agendar_servico_uploadFoto = agendar_servico_uploadFoto;
+      window.agendar_servico_removerFoto = agendar_servico_removerFoto;
+      window.agendar_servico_confirmar = agendar_servico_confirmar;
+      window.agendar_servico_mudarOficina = agendar_servico_mudarOficina;
+      window.agendar_servico_pagamento = agendar_servico_pagamento;
+      window.agendar_servico_fecharPagamento = agendar_servico_fecharPagamento;
+      window.agendar_servico_pagarPix = agendar_servico_pagarPix;
+      window.agendar_servico_pagarCartao = agendar_servico_pagarCartao;
+      window.agendar_servico_pularPagamento = agendar_servico_pularPagamento;
+      window.agendar_servico_confirmarPagamento = agendar_servico_confirmarPagamento;
+
+      agendar_servico_render();
+    })();
+  </script>
+</section>
+
     <!-- TELAS -->
     </main>
   </div>
