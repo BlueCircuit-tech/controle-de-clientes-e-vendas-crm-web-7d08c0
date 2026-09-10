@@ -995,6 +995,227 @@ function abrirDetalheAgendamento(idx) {
 })();
 </script>
 
+    <section data-tela="detalhe-do-servico" class="hidden">
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+        <button onclick="mostrarTela('catalogo-de-servicos')" class="hover:text-marca-600 transition-colors">Catálogo</button>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-gray-700 font-medium">Oficina Mecânica São Paulo</span>
+    </div>
+    <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex-1 min-w-0">
+            <div class="flex items-start justify-between flex-wrap gap-4 mb-6">
+                <div>
+                    <h1 class="font-display text-3xl font-bold text-gray-900">Oficina Mecânica São Paulo</h1>
+                    <p class="text-gray-500 mt-1">Manutenção preventiva e corretiva • São Paulo, SP</p>
+                    <div class="flex items-center gap-3 mt-3">
+                        <div class="flex items-center gap-1">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="font-semibold text-gray-800">4.7</span>
+                            <span class="text-gray-400">(128 avaliações)</span>
+                        </div>
+                        <span class="badge badge-green">Verificado</span>
+                        <span class="badge badge-blue">Parceiro Premium</span>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="mostrarTela('agendar-servico')" class="btn btn-primary active:scale-95 transition-transform flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        Agendar Agora
+                    </button>
+                    <button onclick="mostrarTela('orcamentos-e-pedidos')" class="btn btn-outline active:scale-95 transition-transform">Solicitar Orçamento</button>
+                    <button onclick="detalhe_do_servico_whatsapp()" class="btn active:scale-95 transition-transform flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        WhatsApp
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+                <div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden bg-gradient-to-br from-gray-700 to-gray-900 min-h-[300px] md:min-h-[400px] flex items-center justify-center relative group cursor-pointer" onclick="detalhe_do_servico_abrirGaleria(0)">
+                    <svg class="w-20 h-20 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span class="absolute bottom-4 right-4 bg-black/60 text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg> Ver galeria</span>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-orange-100 to-orange-200 min-h-[140px] flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-marca-400 transition-all" onclick="detalhe_do_servico_abrirGaleria(1)">
+                    <svg class="w-10 h-10 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <div class="rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 min-h-[140px] flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-marca-400 transition-all" onclick="detalhe_do_servico_abrirGaleria(2)">
+                    <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.067 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.067c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.067-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+            </div>
+            <div class="card mb-8">
+                <h2 class="font-display text-xl font-bold text-gray-900 mb-4">Sobre o Serviço</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">A Oficina Mecânica São Paulo oferece serviços completos de manutenção automotiva com mais de 15 anos de experiência no mercado. Contamos com equipe de mecânicos certificados e equipamentos de última geração para garantir o melhor atendimento ao seu veículo.</p>
+                <p class="text-gray-600 leading-relaxed mb-6">Realizamos desde serviços básicos de revisão até reparos complexos em motor, câmbio e suspensão. Trabalhamos com todas as marcas e modelos de veículos nacionais e importados.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-50 rounded-xl p-4 text-center"><svg class="w-8 h-8 text-marca-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-sm font-medium text-gray-700">Garantia 12 meses</span></div>
+                    <div class="bg-gray-50 rounded-xl p-4 text-center"><svg class="w-8 h-8 text-marca-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="text-sm font-medium text-gray-700">Entrega no prazo</span></div>
+                    <div class="bg-gray-50 rounded-xl p-4 text-center"><svg class="w-8 h-8 text-marca-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-sm font-medium text-gray-700">Equipe especializada</span></div>
+                    <div class="bg-gray-50 rounded-xl p-4 text-center"><svg class="w-8 h-8 text-marca-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg><span class="text-sm font-medium text-gray-700">Cartão e PIX</span></div>
+                </div>
+            </div>
+            <div class="card mb-8">
+                <h2 class="font-display text-xl font-bold text-gray-900 mb-4">Tabela de Preços</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead><tr class="border-b border-gray-200"><th class="pb-3 font-semibold text-gray-700">Serviço</th><th class="pb-3 font-semibold text-gray-700 text-right">A partir de</th><th class="pb-3 font-semibold text-gray-700 text-center">Prazo</th></tr></thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Troca de óleo + filtro</td><td class="py-3 text-right font-medium text-gray-900">R$ 189,00</td><td class="py-3 text-center text-gray-500">1 hora</td></tr>
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Alinhamento e balanceamento</td><td class="py-3 text-right font-medium text-gray-900">R$ 149,00</td><td class="py-3 text-center text-gray-500">1,5 hora</td></tr>
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Revisão completa (20 itens)</td><td class="py-3 text-right font-medium text-gray-900">R$ 499,00</td><td class="py-3 text-center text-gray-500">4 horas</td></tr>
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Troca de pastilha de freio</td><td class="py-3 text-right font-medium text-gray-900">R$ 320,00</td><td class="py-3 text-center text-gray-500">2 horas</td></tr>
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Diagnóstico eletrônico</td><td class="py-3 text-right font-medium text-gray-900">R$ 120,00</td><td class="py-3 text-center text-gray-500">45 min</td></tr>
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Reparo no sistema de arrefecimento</td><td class="py-3 text-right font-medium text-gray-900">R$ 450,00</td><td class="py-3 text-center text-gray-500">3 horas</td></tr>
+                            <tr class="hover:bg-gray-50 transition-colors"><td class="py-3 text-gray-800">Troca de correia dentada</td><td class="py-3 text-right font-medium text-gray-900">R$ 890,00</td><td class="py-3 text-center text-gray-500">5 horas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-8">
+                <h2 class="font-display text-xl font-bold text-gray-900 mb-4">Peças Comuns Utilizadas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="detalhe_do_servico_listaPecas"></div>
+            </div>
+            <div class="card">
+                <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+                    <h2 class="font-display text-xl font-bold text-gray-900">Avaliações de Clientes</h2>
+                    <div class="flex gap-2 flex-wrap">
+                        <select id="detalhe_do_servico_filtroNota" onchange="detalhe_do_servico_filtrarAvaliacoes()" class="input-field text-sm py-2 px-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none">
+                            <option value="todas">Todas as notas</option>
+                            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                            <option value="4">⭐⭐⭐⭐ (4+)</option>
+                            <option value="3">⭐⭐⭐ (3+)</option>
+                        </select>
+                        <select id="detalhe_do_servico_filtroData" onchange="detalhe_do_servico_filtrarAvaliacoes()" class="input-field text-sm py-2 px-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-marca-500 focus:border-marca-500 outline-none">
+                            <option value="recentes">Mais recentes</option>
+                            <option value="antigas">Mais antigas</option>
+                            <option value="melhores">Melhores notas</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
+                    <div class="text-center"><span class="text-4xl font-bold text-gray-900">4.7</span><div class="flex text-yellow-400 my-1">★★★★<span class="text-gray-300">★</span></div><span class="text-sm text-gray-500">128 avaliações</span></div>
+                    <div class="flex-1 space-y-1">
+                        <div class="flex items-center gap-2 text-sm"><span class="w-4 text-right">5</span><div class="flex-1 bg-gray-200 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:72%"></div></div><span class="w-10 text-gray-500">72%</span></div>
+                        <div class="flex items-center gap-2 text-sm"><span class="w-4 text-right">4</span><div class="flex-1 bg-gray-200 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:20%"></div></div><span class="w-10 text-gray-500">20%</span></div>
+                        <div class="flex items-center gap-2 text-sm"><span class="w-4 text-right">3</span><div class="flex-1 bg-gray-200 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:5%"></div></div><span class="w-10 text-gray-500">5%</span></div>
+                        <div class="flex items-center gap-2 text-sm"><span class="w-4 text-right">2</span><div class="flex-1 bg-gray-200 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:2%"></div></div><span class="w-10 text-gray-500">2%</span></div>
+                        <div class="flex items-center gap-2 text-sm"><span class="w-4 text-right">1</span><div class="flex-1 bg-gray-200 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:1%"></div></div><span class="w-10 text-gray-500">1%</span></div>
+                    </div>
+                </div>
+                <div id="detalhe_do_servico_avaliacoesContainer" class="space-y-4"></div>
+                <div id="detalhe_do_servico_vazioAvaliacoes" class="hidden text-center py-12"><svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg><p class="text-gray-500">Nenhuma avaliação encontrada com esse filtro.</p></div>
+            </div>
+        </div>
+        <aside class="w-full lg:w-80 shrink-0 space-y-6">
+            <div class="card">
+                <h3 class="font-display font-bold text-gray-900 mb-4">Informações de Contato</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3"><svg class="w-5 h-5 text-marca-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-sm text-gray-600">Rua Augusta, 1250 — Consolação<br>São Paulo, SP — CEP 01304-001</span></div>
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-marca-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span class="text-sm text-gray-600">(11) 3456-7890</span></div>
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-marca-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="text-sm text-gray-600">contato@oficinasao Paulo.com.br</span></div>
+                    <div class="flex items-center gap-3"><svg class="w-5 h-5 text-marca-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg><span class="text-sm text-gray-600">www.oficinasao Paulo.com.br</span></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="font-display font-bold text-gray-900 mb-4">Horário de Funcionamento</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between py-1.5 border-b border-gray-100"><span class="text-gray-600">Segunda — Sexta</span><span class="font-medium text-gray-800">08:00 — 18:00</span></div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-100"><span class="text-gray-600">Sábado</span><span class="font-medium text-gray-800">08:00 — 13:00</span></div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-100"><span class="text-gray-600">Domingo</span><span class="font-medium text-red-500">Fechado</span></div>
+                    <div class="flex items-center gap-2 mt-3 p-2 bg-green-50 rounded-lg"><div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div><span class="text-sm text-green-700 font-medium">Aberto agora • Fecha às 18:00</span></div>
+                </div>
+            </div>
+            <div class="card bg-marca-50 border border-marca-100">
+                <h3 class="font-display font-bold text-gray-900 mb-2">Formas de Pagamento</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge badge-green">PIX</span><span class="badge badge-green">Cartão Crédito</span><span class="badge badge-green">Cartão Débito</span><span class="badge badge-blue">Dinheiro</span><span class="badge badge-blue">Boleto</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="font-display font-bold text-gray-900 mb-4">Serviços Similares</h3>
+                <div class="space-y-3" id="detalhe_do_servico_servicosSimilares"></div>
+            </div>
+        </aside>
+    </div>
+</div>
+</section>
+
+<script>
+(function(){
+    const pecas = [
+        { nome: "Filtro de óleo Mann W 914", marca: "Mann-Filter", preco: "R$ 32,00", estoque: true },
+        { nome: "Pastilha de freio Bosch", marca: "Bosch", preco: "R$ 145,00", estoque: true },
+        { nome: "Correia dentada Gates", marca: "Gates", preco: "R$ 210,00", estoque: true },
+        { nome: "Amortecedor dianteiro Monroe", marca: "Monroe", preco: "R$ 380,00", estoque: false },
+        { nome: "Velas de ignição NGK", marca: "NGK", preco: "R$ 89,00", estoque: true },
+        { nome: "Disco de freio Fremax", marca: "Fremax", preco: "R$ 165,00", estoque: true },
+        { nome: "Bomba d'água Volkswagen", marca: "VW Genuíno", preco: "R$ 340,00", estoque: true },
+        { nome: "Sensor de oxigênio Bosch", marca: "Bosch", preco: "R$ 280,00", estoque: false }
+    ];
+    const avaliacoes = [
+        { nome: "Carlos Mendes", iniciais: "CM", cor: "bg-blue-500", nota: 5, data: "2025-12-15", texto: "Excelente atendimento! Fiz a revisão completa do meu Honda Civic e o serviço foi impecável. Prazo cumprido e preço justo.", servico: "Revisão completa" },
+        { nome: "Ana Beatriz Souza", iniciais: "AB", cor: "bg-pink-500", nota: 5, data: "2025-11-28", texto: "Muito profissionais. Troquei o óleo e fiz o alinhamento. Atendimento rápido e de qualidade. Recomendo!", servico: "Troca de óleo + alinhamento" },
+        { nome: "Roberto Ferreira Lima", iniciais: "RF", cor: "bg-green-500", nota: 4, data: "2025-12-02", texto: "Bom serviço, mas tive que esperar um pouco mais do que o estimado. No geral, recomendo a oficina.", servico: "Diagnóstico eletrônico" },
+        { nome: "Mariana Oliveira Costa", iniciais: "MO", cor: "bg-purple-500", nota: 5, data: "2025-10-15", texto: "Encontrei essa oficina por indicação e não me arrependi. Conserto rápido do sistema de arrefecimento.", servico: "Reparo arrefecimento" },
+        { nome: "Paulo Henrique Santos", iniciais: "PH", cor: "bg-orange-500", nota: 4, data: "2025-09-20", texto: "Fiz a troca da correia dentada. Equipe competente e preço dentro do mercado. Voltarei com certeza.", servico: "Troca correia dentada" },
+        { nome: "Fernanda Rodrigues", iniciais: "FR", cor: "bg-teal-500", nota: 5, data: "2025-12-10", texto: "Atendimento nota 10! O mecânico explicou tudo detalhadamente sobre o que precisava no meu carro.", servico: "Revisão completa" },
+        { nome: "Lucas Martins Pereira", iniciais: "LM", cor: "bg-indigo-500", nota: 3, data: "2025-08-05", texto: "Serviço bem feito, mas o tempo de espera foi maior que o combinado. A qualidade do trabalho compensa.", servico: "Troca pastilhas de freio" },
+        { nome: "Patricia Almeida", iniciais: "PA", cor: "bg-red-400", nota: 5, data: "2025-12-18", texto: "Melhor oficina da região! Sempre levo meu carro aqui. Honestidade e qualidade são marcas registradas.", servico: "Troca de óleo + filtro" }
+    ];
+    const servicosSimilares = [
+        { nome: "Auto Center Vila Mariana", categoria: "Manutenção Geral", nota: 4.5, distancia: "1.2 km", preco: "R$ 170,00" },
+        { nome: "Mecânica Rápida Moema", categoria: "Serviços Express", nota: 4.3, distancia: "2.5 km", preco: "R$ 155,00" },
+        { nome: "Oficina do Zé — Pinheiros", categoria: "Auto Elétrica", nota: 4.8, distancia: "3.8 km", preco: "R$ 200,00" },
+        { nome: "Centro Automotivo Paulista", categoria: "Revisão Completa", nota: 4.2, distancia: "1.8 km", preco: "R$ 450,00" }
+    ];
+
+    function init(){
+        const c = document.getElementById("detalhe_do_servico_listaPecas");
+        if(c) c.innerHTML = pecas.map(p => `<div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"><div><p class="text-sm font-medium text-gray-800">${p.nome}</p><p class="text-xs text-gray-500">${p.marca}</p></div><div class="text-right"><span class="text-sm font-semibold text-gray-900 block">${p.preco}</span><span class="text-xs ${p.estoque ? 'text-green-600' : 'text-red-500'}">${p.estoque ? 'Em estoque' : 'Sob consulta'}</span></div></div>`).join("");
+        renderAvaliacoes(avaliacoes);
+        const s = document.getElementById("detalhe_do_servico_servicosSimilares");
+        if(s) s.innerHTML = servicosSimilares.map((sv, i) => `<div onclick="mostrarTela('detalhe-do-servico')" class="p-3 bg-gray-50 rounded-lg hover:bg-marca-50 hover:ring-1 hover:ring-marca-300 transition-all cursor-pointer"><p class="text-sm font-medium text-gray-800">${sv.nome}</p><p class="text-xs text-gray-500">${sv.categoria} • ⭐ ${sv.nota} • ${sv.distancia}</p><p class="text-sm font-semibold text-marca-600 mt-1">A partir de ${sv.preco}</p></div>`).join("");
+    }
+
+    function renderAvaliacoes(lista){
+        const c = document.getElementById("detalhe_do_servico_avaliacoesContainer");
+        const v = document.getElementById("detalhe_do_servico_vazioAvaliacoes");
+        if(!c) return;
+        if(lista.length === 0){ c.classList.add("hidden"); if(v) v.classList.remove("hidden"); return; }
+        c.classList.remove("hidden"); if(v) v.classList.add("hidden");
+        c.innerHTML = lista.map(a => `<div class="p-4 bg-gray-50 rounded-xl"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-3"><div class="w-10 h-10 ${a.cor} rounded-full flex items-center justify-center text-white font-semibold text-sm">${a.iniciais}</div><div><p class="font-medium text-gray-800 text-sm">${a.nome}</p><p class="text-xs text-gray-500">${a.servico}</p></div></div><div class="text-right"><div class="text-yellow-400 text-sm">${'★'.repeat(a.nota)}${'☆'.repeat(5-a.nota)}</div><span class="text-xs text-gray-400">${dataBR(a.data)}</span></div></div><p class="text-sm text-gray-600 ml-13 mt-2 pl-13">${a.texto}</p></div>`).join("");
+    }
+
+    window.detalhe_do_servico_filtrarAvaliacoes = function(){
+        const nota = document.getElementById("detalhe_do_servico_filtroNota").value;
+        const dataOrd = document.getElementById("detalhe_do_servico_filtroData").value;
+        let filtradas = [...avaliacoes];
+        if(nota !== "todas") filtradas = filtradas.filter(a => a.nota >= parseInt(nota));
+        if(dataOrd === "recentes") filtradas.sort((a,b) => new Date(b.data) - new Date(a.data));
+        else if(dataOrd === "antigas") filtradas.sort((a,b) => new Date(a.data) - new Date(b.data));
+        else if(dataOrd === "melhores") filtradas.sort((a,b) => b.nota - a.nota);
+        renderAvaliacoes(filtradas);
+    };
+
+    window.detalhe_do_servico_whatsapp = function(){
+        const msg = encodeURIComponent("Olá! Gostaria de mais informações sobre os serviços da Oficina Mecânica São Paulo.");
+        toast("Redirecionando para o WhatsApp...", "info");
+        setTimeout(() => { window.open("https://wa.me/551134567890?text=" + msg, "_blank"); }, 500);
+    };
+
+    window.detalhe_do_servico_abrirGaleria = function(idx){
+        const galeria = [
+            { titulo: "Área de atendimento", desc: "Recepção ampla e climatizada para conforto dos clientes." },
+            { titulo: "Box de serviço 1", desc: "Equipado com elevador hidráulico e ferramentas especiais." },
+            { titulo: "Oficina principal", desc: "Espaço amplo com 5 boxes de atendimento simultâneo." }
+        ];
+        const item = galeria[idx];
+        abrirModal(`<div class="text-center"><div class="w-full h-48 rounded-xl bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center mb-4"><svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><h3 class="font-display font-bold text-lg text-gray-900">${item.titulo}</h3><p class="text-gray-500 mt-1">${item.desc}</p></div>`, "Galeria de Fotos");
+    };
+
+    init();
+})();
+</script>
+
     <!-- TELAS -->
     </main>
   </div>
