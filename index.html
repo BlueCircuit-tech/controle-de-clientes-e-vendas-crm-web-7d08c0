@@ -211,7 +211,460 @@
 
     <!-- ÁREA DE TELAS -->
     <main class="flex-1 overflow-y-auto p-8">
-      <!-- TELAS -->
+      <section data-tela="painel-inicial" class="hidden">
+    <div class="p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+                <h1 class="text-2xl lg:text-3xl font-display font-bold text-gray-900">Olá, Rafael 👋</h1>
+                <p class="text-gray-500 mt-1 font-body">Aqui está o resumo dos seus veículos e serviços.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="mostrarTela('catalogo-de-servicos')" class="btn bg-marca-600 hover:bg-marca-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm active:scale-95 transition-all flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Nova Solicitação
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="card p-5 border border-gray-100 rounded-2xl">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Gasto Mensal</span>
+                    <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center"><svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">R$ 2.847,00</p>
+                <p class="text-xs text-red-500 mt-1 font-medium">↑ 12% vs mês anterior</p>
+            </div>
+            <div class="card p-5 border border-gray-100 rounded-2xl">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Revisões</span>
+                    <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center"><svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg></div>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">2 pendentes</p>
+                <p class="text-xs text-amber-500 mt-1 font-medium">Fiat Toro e Honda Civic</p>
+            </div>
+            <div class="card p-5 border border-gray-100 rounded-2xl">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Agendamentos</span>
+                    <div class="w-8 h-8 rounded-lg bg-marca-50 flex items-center justify-center"><svg class="w-4 h-4 text-marca-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">4 este mês</p>
+                <p class="text-xs text-gray-400 mt-1 font-medium">1 pendente de confirmação</p>
+            </div>
+            <div class="card p-5 border border-gray-100 rounded-2xl">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Orçamentos</span>
+                    <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">3 aprovados</p>
+                <p class="text-xs text-emerald-500 mt-1 font-medium">R$ 5.420 no total</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div class="xl:col-span-2 card p-6 border border-gray-100 rounded-2xl">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-lg font-display font-bold text-gray-900">Gastos com Manutenção</h2>
+                        <p class="text-sm text-gray-400">Últimos 6 meses</p>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-marca-500"></span>Este ano</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-gray-300"></span>Ano anterior</span>
+                    </div>
+                </div>
+                <div class="relative h-56">
+                    <svg viewBox="0 0 600 200" class="w-full h-full" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="barraGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#0d9488" stop-opacity="0.15"/>
+                                <stop offset="100%" stop-color="#0d9488" stop-opacity="0.01"/>
+                            </linearGradient>
+                        </defs>
+                        <line x1="0" y1="50" x2="600" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+                        <line x1="0" y1="100" x2="600" y2="100" stroke="#f1f5f9" stroke-width="1"/>
+                        <line x1="0" y1="150" x2="600" y2="150" stroke="#f1f5f9" stroke-width="1"/>
+                        <rect x="30" y="65" width="55" height="130" rx="5" fill="url(#barraGrad)" stroke="#0d9488" stroke-width="1.5"/>
+                        <rect x="135" y="40" width="55" height="155" rx="5" fill="url(#barraGrad)" stroke="#0d9488" stroke-width="1.5"/>
+                        <rect x="240" y="80" width="55" height="115" rx="5" fill="url(#barraGrad)" stroke="#0d9488" stroke-width="1.5"/>
+                        <rect x="345" y="25" width="55" height="170" rx="5" fill="url(#barraGrad)" stroke="#0d9488" stroke-width="1.5"/>
+                        <rect x="450" y="55" width="55" height="140" rx="5" fill="url(#barraGrad)" stroke="#0d9488" stroke-width="1.5"/>
+                        <rect x="555" y="70" width="0" height="125" rx="5" fill="url(#barraGrad)" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="4 4"/>
+                        <rect x="40" y="75" width="45" height="120" rx="4" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+                        <rect x="145" y="60" width="45" height="135" rx="4" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+                        <rect x="250" y="100" width="45" height="95" rx="4" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+                        <rect x="355" y="45" width="45" height="150" rx="4" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+                        <rect x="460" y="70" width="45" height="125" rx="4" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1"/>
+                        <text x="57" y="195" text-anchor="middle" class="text-[10px]" fill="#94a3b8" font-size="10">Jul</text>
+                        <text x="162" y="195" text-anchor="middle" class="text-[10px]" fill="#94a3b8" font-size="10">Ago</text>
+                        <text x="267" y="195" text-anchor="middle" class="text-[10px]" fill="#94a3b8" font-size="10">Set</text>
+                        <text x="372" y="195" text-anchor="middle" class="text-[10px]" fill="#94a3b8" font-size="10">Out</text>
+                        <text x="477" y="195" text-anchor="middle" class="text-[10px]" fill="#94a3b8" font-size="10">Nov</text>
+                        <text x="582" y="195" text-anchor="middle" class="text-[10px]" fill="#94a3b8" font-size="10">Dez</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="card p-6 border border-gray-100 rounded-2xl">
+                <h2 class="text-lg font-display font-bold text-gray-900 mb-4">Gastos por Veículo</h2>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="text-gray-600 font-medium">Fiat Toro</span><span class="text-gray-900 font-bold">R$ 1.240</span></div>
+                        <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-marca-500 rounded-full transition-all duration-700" style="width:78%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="text-gray-600 font-medium">Honda Civic</span><span class="text-gray-900 font-bold">R$ 980</span></div>
+                        <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-blue-500 rounded-full transition-all duration-700" style="width:62%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span class="text-gray-600 font-medium">Toyota Hilux</span><span class="text-gray-900 font-bold">R$ 627</span></div>
+                        <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500 rounded-full transition-all duration-700" style="width:40%"></div></div>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100">
+                        <div class="flex justify-between text-sm"><span class="text-gray-500">Total acumulado</span><span class="text-gray-900 font-bold">R$ 2.847</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+            <div class="xl:col-span-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-display font-bold text-gray-900">Meus Veículos</h2>
+                    <span class="text-sm text-gray-400">4 veículos</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div onclick="abrirDetalheVeiculo(0)" class="card border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300 group active:scale-[0.98]">
+                        <div class="h-32 relative" style="background:linear-gradient(135deg, #0d9488 0%, #065f56 100%)">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white/25" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                            </div>
+                            <span class="absolute top-3 right-3 badge bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-lg font-semibold">Em dia</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-display font-bold text-gray-900">Fiat Toro</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">Freedom 1.3 T270 — 2022</p>
+                            <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">Placa</span>
+                                    <span class="text-sm font-bold text-gray-700 font-mono">ABC1D23</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-gray-400 block">Quilometragem</span>
+                                    <span class="text-sm font-bold text-gray-700">45.230 km</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex items-center gap-1.5 text-amber-600 bg-amber-50 rounded-lg px-3 py-2">
+                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                                <span class="text-xs font-medium">Revisão em 2.300 km</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div onclick="abrirDetalheVeiculo(1)" class="card border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300 group active:scale-[0.98]">
+                        <div class="h-32 relative" style="background:linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white/25" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                            </div>
+                            <span class="absolute top-3 right-3 badge bg-amber-500 text-white text-xs px-2.5 py-1 rounded-lg font-semibold">Revisão pendente</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-display font-bold text-gray-900">Honda Civic</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">Sport 2.0 — 2021</p>
+                            <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">Placa</span>
+                                    <span class="text-sm font-bold text-gray-700 font-mono">DEF4G56</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-gray-400 block">Quilometragem</span>
+                                    <span class="text-sm font-bold text-gray-700">62.800 km</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex items-center gap-1.5 text-amber-600 bg-amber-50 rounded-lg px-3 py-2">
+                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                                <span class="text-xs font-medium">Revisão em 800 km</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div onclick="abrirDetalheVeiculo(2)" class="card border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300 group active:scale-[0.98]">
+                        <div class="h-32 relative" style="background:linear-gradient(135deg, #f59e0b 0%, #b45309 100%)">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white/25" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                            </div>
+                            <span class="absolute top-3 right-3 badge bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-lg font-semibold">Em dia</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-display font-bold text-gray-900">Toyota Hilux</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">SRX 2.8 Turbo — 2023</p>
+                            <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">Placa</span>
+                                    <span class="text-sm font-bold text-gray-700 font-mono">GHI7J89</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-gray-400 block">Quilometragem</span>
+                                    <span class="text-sm font-bold text-gray-700">18.500 km</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex items-center gap-1.5 text-emerald-600 bg-emerald-50 rounded-lg px-3 py-2">
+                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span class="text-xs font-medium">Revisão em 11.500 km</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div onclick="abrirDetalheVeiculo(3)" class="card border border-gray-100 rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300 group active:scale-[0.98]">
+                        <div class="h-32 relative" style="background:linear-gradient(135deg, #6366f1 0%, #3730a3 100%)">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white/25" fill="currentColor" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                            </div>
+                            <span class="absolute top-3 right-3 badge bg-emerald-500 text-white text-xs px-2.5 py-1 rounded-lg font-semibold">Em dia</span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-display font-bold text-gray-900">VW Delivery</h3>
+                            <p class="text-sm text-gray-500 mt-0.5">Express 9.170 — 2023</p>
+                            <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">Placa</span>
+                                    <span class="text-sm font-bold text-gray-700 font-mono">JKL0M12</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-gray-400 block">Quilometragem</span>
+                                    <span class="text-sm font-bold text-gray-700">34.100 km</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 flex items-center gap-1.5 text-emerald-600 bg-emerald-50 rounded-lg px-3 py-2">
+                                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span class="text-xs font-medium">Revisão em 15.900 km</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:col-span-2">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-display font-bold text-gray-900">Próximos Agendamentos</h2>
+                    <button onclick="mostrarTela('acompanhar-servico')" class="text-sm text-marca-600 hover:text-marca-700 font-semibold transition-colors">Ver todos →</button>
+                </div>
+                <div class="space-y-3">
+                    <div onclick="abrirDetalheAgendamento(0)" class="card p-4 border border-gray-100 rounded-2xl cursor-pointer hover:shadow-md transition-all duration-300 active:scale-[0.98]">
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-marca-50 flex flex-col items-center justify-center flex-shrink-0 border border-marca-100">
+                                <span class="text-[10px] font-bold text-marca-600 uppercase leading-none">Dez</span>
+                                <span class="text-lg font-bold text-marca-700 leading-tight">14</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="font-semibold text-gray-900 text-sm leading-tight">Troca de Óleo e Filtros</h3>
+                                    <span class="badge bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-md font-semibold whitespace-nowrap">Pendente</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Fiat Toro · ABC1D23</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Oficina Central Auto · 09:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div onclick="abrirDetalheAgendamento(1)" class="card p-4 border border-gray-100 rounded-2xl cursor-pointer hover:shadow-md transition-all duration-300 active:scale-[0.98]">
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-marca-50 flex flex-col items-center justify-center flex-shrink-0 border border-marca-100">
+                                <span class="text-[10px] font-bold text-marca-600 uppercase leading-none">Dez</span>
+                                <span class="text-lg font-bold text-marca-700 leading-tight">18</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="font-semibold text-gray-900 text-sm leading-tight">Alinhamento e Balanceamento</h3>
+                                    <span class="badge bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-md font-semibold whitespace-nowrap">Confirmado</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Honda Civic · DEF4G56</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Pneus Express · 14:30</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div onclick="abrirDetalheAgendamento(2)" class="card p-4 border border-gray-100 rounded-2xl cursor-pointer hover:shadow-md transition-all duration-300 active:scale-[0.98]">
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-marca-50 flex flex-col items-center justify-center flex-shrink-0 border border-marca-100">
+                                <span class="text-[10px] font-bold text-marca-600 uppercase leading-none">Dez</span>
+                                <span class="text-lg font-bold text-marca-700 leading-tight">22</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="font-semibold text-gray-900 text-sm leading-tight">Revisão Preventiva 30k</h3>
+                                    <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold whitespace-nowrap">Confirmado</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Toyota Hilux · GHI7J89</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Toyota Concessionária · 10:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div onclick="abrirDetalheAgendamento(3)" class="card p-4 border border-gray-100 rounded-2xl cursor-pointer hover:shadow-md transition-all duration-300 active:scale-[0.98]">
+                        <div class="flex items-start gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-marca-50 flex flex-col items-center justify-center flex-shrink-0 border border-marca-100">
+                                <span class="text-[10px] font-bold text-marca-600 uppercase leading-none">Jan</span>
+                                <span class="text-lg font-bold text-marca-700 leading-tight">05</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="font-semibold text-gray-900 text-sm leading-tight">Troca de Pastilhas de Freio</h3>
+                                    <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold whitespace-nowrap">Confirmado</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Fiat Toro · ABC1D23</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Freios & Cia · 08:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div class="card p-6 border border-gray-100 rounded-2xl">
+                <h2 class="text-lg font-display font-bold text-gray-900 mb-4">Serviços Mais Utilizados</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+                        <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-gray-800">Troca de Óleo</p><p class="text-xs text-gray-400">8 serviços no ano</p></div>
+                        <span class="text-sm font-bold text-gray-700">R$ 3.200</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2"/></svg></div>
+                        <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-gray-800">Alinhamento</p><p class="text-xs text-gray-400">5 serviços no ano</p></div>
+                        <span class="text-sm font-bold text-gray-700">R$ 1.500</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                        <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-gray-800">Elétrica Geral</p><p class="text-xs text-gray-400">3 serviços no ano</p></div>
+                        <span class="text-sm font-bold text-gray-700">R$ 2.100</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+                        <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-gray-800">Revisão Preventiva</p><p class="text-xs text-gray-400">3 serviços no ano</p></div>
+                        <span class="text-sm font-bold text-gray-700">R$ 4.500</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-6 border border-gray-100 rounded-2xl">
+                <h2 class="text-lg font-display font-bold text-gray-900 mb-4">Histórico Recente</h2>
+                <div class="space-y-3">
+                    <div onclick="abrirModal('<div class=\'space-y-3\'><div class=\'flex items-center gap-3 p-3 bg-gray-50 rounded-xl\'><div class=\'w-10 h-10 rounded-full bg-marca-100 flex items-center justify-center text-marca-700 font-bold text-sm\'>FT</div><div><p class=\'text-sm font-semibold text-gray-900\'>Fiat Toro</p><p class=\'text-xs text-gray-500\'>ABC1D23</p></div></div><div class=\'space-y-2 text-sm\'><p><span class=\'text-gray-500\'>Serviço:</span> <span class=\'text-gray-900 font-medium\'>Troca de óleo 5W30 + filtro</span></p><p><span class=\'text-gray-500\'>Data:</span> <span class=\'text-gray-900\'>12/11/2024</span></p><p><span class=\'text-gray-500\'>Oficina:</span> <span class=\'text-gray-900\'>Oficina Central Auto</span></p><p><span class=\'text-gray-500\'>Valor:</span> <span class=\'text-gray-900 font-bold\'>R$ 380,00</span></p><p><span class=\'text-gray-500\'>Status:</span> <span class=\'badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold\'>Concluído</span></p></div></div>', 'Detalhe do Serviço')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors active:scale-[0.98]">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background:linear-gradient(135deg, #0d9488, #065f56)">FT</div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-800 truncate">Troca de Óleo — Fiat Toro</p>
+                            <p class="text-xs text-gray-400">12/11/2024 · R$ 380</p>
+                        </div>
+                        <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold flex-shrink-0">Concluído</span>
+                    </div>
+                    <div onclick="abrirModal('<div class=\'space-y-3\'><div class=\'flex items-center gap-3 p-3 bg-gray-50 rounded-xl\'><div class=\'w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm\'>HC</div><div><p class=\'text-sm font-semibold text-gray-900\'>Honda Civic</p><p class=\'text-xs text-gray-500\'>DEF4G56</p></div></div><div class=\'space-y-2 text-sm\'><p><span class=\'text-gray-500\'>Serviço:</span> <span class=\'text-gray-900 font-medium\'>Alinhamento 3D + Balanceamento</span></p><p><span class=\'text-gray-500\'>Data:</span> <span class=\'text-gray-900\'>28/10/2024</span></p><p><span class=\'text-gray-500\'>Oficina:</span> <span class=\'text-gray-900\'>Pneus Express</span></p><p><span class=\'text-gray-500\'>Valor:</span> <span class=\'text-gray-900 font-bold\'>R$ 250,00</span></p><p><span class=\'text-gray-500\'>Status:</span> <span class=\'badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold\'>Concluído</span></p></div></div>', 'Detalhe do Serviço')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors active:scale-[0.98]">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background:linear-gradient(135deg, #3b82f6, #1e40af)">HC</div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-800 truncate">Alinhamento — Honda Civic</p>
+                            <p class="text-xs text-gray-400">28/10/2024 · R$ 250</p>
+                        </div>
+                        <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold flex-shrink-0">Concluído</span>
+                    </div>
+                    <div onclick="abrirModal('<div class=\'space-y-3\'><div class=\'flex items-center gap-3 p-3 bg-gray-50 rounded-xl\'><div class=\'w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-sm\'>TH</div><div><p class=\'text-sm font-semibold text-gray-900\'>Toyota Hilux</p><p class=\'text-xs text-gray-500\'>GHI7J89</p></div></div><div class=\'space-y-2 text-sm\'><p><span class=\'text-gray-500\'>Serviço:</span> <span class=\'text-gray-900 font-medium\'>Revisão 20.000 km completa</span></p><p><span class=\'text-gray-500\'>Data:</span> <span class=\'text-gray-900\'>15/09/2024</span></p><p><span class=\'text-gray-500\'>Oficina:</span> <span class=\'text-gray-900\'>Toyota Concessionária</span></p><p><span class=\'text-gray-500\'>Valor:</span> <span class=\'text-gray-900 font-bold\'>R$ 1.800,00</span></p><p><span class=\'text-gray-500\'>Status:</span> <span class=\'badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold\'>Concluído</span></p></div></div>', 'Detalhe do Serviço')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors active:scale-[0.98]">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background:linear-gradient(135deg, #f59e0b, #b45309)">TH</div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-800 truncate">Revisão — Toyota Hilux</p>
+                            <p class="text-xs text-gray-400">15/09/2024 · R$ 1.800</p>
+                        </div>
+                        <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold flex-shrink-0">Concluído</span>
+                    </div>
+                    <div onclick="abrirModal('<div class=\'space-y-3\'><div class=\'flex items-center gap-3 p-3 bg-gray-50 rounded-xl\'><div class=\'w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-sm\'>VD</div><div><p class=\'text-sm font-semibold text-gray-900\'>VW Delivery</p><p class=\'text-xs text-gray-500\'>JKL0M12</p></div></div><div class=\'space-y-2 text-sm\'><p><span class=\'text-gray-500\'>Serviço:</span> <span class=\'text-gray-900 font-medium\'>Troca de correia dentada</span></p><p><span class=\'text-gray-500\'>Data:</span> <span class=\'text-gray-900\'>03/09/2024</span></p><p><span class=\'text-gray-500\'>Oficina:</span> <span class=\'text-gray-900\'>Diesel Tech</span></p><p><span class=\'text-gray-500\'>Valor:</span> <span class=\'text-gray-900 font-bold\'>R$ 2.100,00</span></p><p><span class=\'text-gray-500\'>Status:</span> <span class=\'badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold\'>Concluído</span></p></div></div>', 'Detalhe do Serviço')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors active:scale-[0.98]">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background:linear-gradient(135deg, #6366f1, #3730a3)">VD</div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-800 truncate">Correia Dentada — VW Delivery</p>
+                            <p class="text-xs text-gray-400">03/09/2024 · R$ 2.100</p>
+                        </div>
+                        <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-md font-semibold flex-shrink-0">Concluído</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-3 pt-4 pb-8">
+            <button onclick="mostrarTela('catalogo-de-servicos')" class="btn bg-marca-600 hover:bg-marca-700 text-white px-6 py-3 rounded-xl font-semibold text-sm active:scale-95 transition-all flex items-center gap-2 shadow-lg shadow-marca-600/20">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243A8 8 0 1117.657 16.657z"/><circle cx="12" cy="11" r="1.5" fill="currentColor"/></svg>
+                Buscar Oficina
+            </button>
+            <button onclick="painel_inicial_solicitarReboque()" class="btn bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-6 py-3 rounded-xl font-semibold text-sm active:scale-95 transition-all flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Solicitar Reboque
+            </button>
+            <button onclick="mostrarTela('acompanhar-servico')" class="btn bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-6 py-3 rounded-xl font-semibold text-sm active:scale-95 transition-all flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Histórico
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+function painel_inicial_solicitarReboque() {
+    abrirModal('<div class="space-y-4"><p class="text-gray-600 text-sm">Informe o local e o veículo que precisa de reboque.</p><div class="space-y-3"><div><label class="block text-xs font-semibold text-gray-500 mb-1 uppercase">Veículo</label><select class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent bg-white"><option>Fiat Toro · ABC1D23</option><option>Honda Civic · DEF4G56</option><option>Toyota Hilux · GHI7J89</option><option>VW Delivery · JKL0M12</option></select></div><div><label class="block text-xs font-semibold text-gray-500 mb-1 uppercase">Local atual</label><input type="text" value="Av. Paulista, 1500 — São Paulo, SP" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent"></div><div><label class="block text-xs font-semibold text-gray-500 mb-1 uppercase">Observação</label><textarea rows="2" placeholder="Ex: veículo não liga, pane seca..." class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-marca-500 focus:border-transparent resize-none"></textarea></div></div><button onclick="fecharModal(); toast(\'Solicitação de reboque enviada! Um parceiro chegará em até 30 min.\', \'ok\')" class="w-full btn bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold text-sm active:scale-95 transition-all mt-2">Solicitar Reboque Agora</button></div>', 'Solicitar Reboque');
+}
+
+const veiculosData = [
+    { nome: 'Fiat Toro', placa: 'ABC1D23', modelo: 'Freedom 1.3 T270', ano: '2022', km: 45230, cor: '#0d9488', status: 'Em dia', revisaoKm: '2.300 km', obs: 'Próxima revisão aos 47.530 km' },
+    { nome: 'Honda Civic', placa: 'DEF4G56', modelo: 'Sport 2.0', ano: '2021', km: 62800, cor: '#3b82f6', status: 'Revisão pendente', revisaoKm: '800 km', obs: 'Revisão atrasada — 63.000 km previstos' },
+    { nome: 'Toyota Hilux', placa: 'GHI7J89', modelo: 'SRX 2.8 Turbo', ano: '2023', km: 18500, cor: '#f59e0b', status: 'Em dia', revisaoKm: '11.500 km', obs: 'Próxima revisão aos 30.000 km' },
+    { nome: 'VW Delivery', placa: 'JKL0M12', modelo: 'Express 9.170', ano: '2023', km: 34100, cor: '#6366f1', status: 'Em dia', revisaoKm: '15.900 km', obs: 'Próxima revisão aos 50.000 km' }
+];
+
+const agendamentosData = [
+    { dia: 14, mes: 'Dez', servico: 'Troca de Óleo e Filtros', veiculo: 'Fiat Toro · ABC1D23', oficina: 'Oficina Central Auto', hora: '09:00', status: 'Pendente', statusClass: 'bg-amber-100 text-amber-700' },
+    { dia: 18, mes: 'Dez', servico: 'Alinhamento e Balanceamento', veiculo: 'Honda Civic · DEF4G56', oficina: 'Pneus Express', hora: '14:30', status: 'Confirmado', statusClass: 'bg-blue-100 text-blue-700' },
+    { dia: 22, mes: 'Dez', servico: 'Revisão Preventiva 30k', veiculo: 'Toyota Hilux · GHI7J89', oficina: 'Toyota Concessionária', hora: '10:00', status: 'Confirmado', statusClass: 'bg-emerald-100 text-emerald-700' },
+    { dia: 5, mes: 'Jan', servico: 'Troca de Pastilhas de Freio', veiculo: 'Fiat Toro · ABC1D23', oficina: 'Freios & Cia', hora: '08:30', status: 'Confirmado', statusClass: 'bg-emerald-100 text-emerald-700' }
+];
+
+function abrirDetalheVeiculo(idx) {
+    const v = veiculosData[idx];
+    const corClara = v.cor + '15';
+    abrirModal(
+        '<div class="space-y-4">' +
+            '<div class="flex items-center gap-3 p-4 rounded-xl" style="background:' + corClara + '">' +
+                '<div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style="background:' + v.cor + '">' + v.nome.substring(0,2).toUpperCase() + '</div>' +
+                '<div><p class="font-bold text-gray-900 text-lg">' + v.nome + '</p><p class="text-sm text-gray-500">' + v.modelo + ' — ' + v.ano + '</p></div>' +
+            '</div>' +
+            '<div class="grid grid-cols-2 gap-3">' +
+                '<div class="bg-gray-50 rounded-xl p-3"><p class="text-xs text-gray-400 mb-0.5">Placa</p><p class="text-sm font-bold text-gray-800 font-mono">' + v.placa + '</p></div>' +
+                '<div class="bg-gray-50 rounded-xl p-3"><p class="text-xs text-gray-400 mb-0.5">Quilometragem</p><p class="text-sm font-bold text-gray-800">' + v.km.toLocaleString('pt-BR') + ' km</p></div>' +
+                '<div class="bg-gray-50 rounded-xl p-3"><p class="text-xs text-gray-400 mb-0.5">Status</p><span class="badge ' + (v.status === 'Em dia' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700') + ' text-xs px-2 py-0.5 rounded-md font-semibold">' + v.status + '</span></div>' +
+                '<div class="bg-gray-50 rounded-xl p-3"><p class="text-xs text-gray-400 mb-0.5">Próxima revisão</p><p class="text-sm font-bold text-gray-800">' + v.revisaoKm + '</p></div>' +
+            '</div>' +
+            '<div class="bg-amber-50 border border-amber-100 rounded-xl p-3 flex items-start gap-2"><svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><p class="text-xs text-amber-700">' + v.obs + '</p></div>' +
+            '<div class="flex gap-2 pt-1"><button onclick="fecharModal(); mostrarTela(\'agendar-servico\')" class="flex-1 btn bg-marca-600 hover:bg-marca-700 text-white py-2.5 rounded-xl text-sm font-semibold active:scale-95 transition-all">Agendar Serviço</button><button onclick="fecharModal(); toast(\'Documento enviado por e-mail.\', \'ok\')" class="btn bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-sm font-semibold active:scale-95 transition-all">📄 Docs</button></div>' +
+        '</div>',
+        v.nome
+    );
+}
+
+function abrirDetalheAgendamento(idx) {
+    const a = agendamentosData[idx];
+    abrirModal(
+        '<div class="space-y-4">' +
+            '<div class="flex items-center gap-3">' +
+                '<div class="w-14 h-14 rounded-xl bg-marca-50 border border-marca-100 flex flex-col items-center justify-center">' +
+                    '<span class="text-[10px] font-bold text-marca-600 uppercase">' + a.mes + '</span>' +
+                    '<span class="text-xl font-bold text-marca-700">' + a.dia + '</span>' +
+                '</div>' +
+                '<div><p class="font-bold text-gray-900">' + a.servico + '</p><p class="text-sm text-gray-500">' + a.veiculo + '</p></div>' +
+            '</div>' +
+            '<div class="bg-gray-50 rounded-xl p-4 space-y-2 text-sm">' +
+                '<div class="flex justify-between"><span class="text-gray-500">Data</span><span class="text-gray-800 font-medium">' + a.dia + ' de ' + a.mes + ' de 2024</span></div>' +
+                '<div class="flex justify-between"><span class="text-gray-500">Horário</span><span class="text-gray-800 font-medium">' + a.hora + '</span></div>' +
+                '<div class="flex justify-between"><span class="text-gray-500">Oficina</span><span class="text-gray-800 font-medium">' + a.oficina + '</span></div>' +
+                '<div class="flex justify-between items-center"><span class="text-gray-500">Status</span><span class="badge ' + a.statusClass + ' text-xs px-2 py-0.5 rounded-md font-semibold">' + a.status + '</span></div>' +
+            '</div>' +
+            '<div class="flex gap-2 pt-1">' +
+                (a.status === 'Pendente' ? '<button onclick="fecharModal(); toast(\'Agendamento confirmado!\', \'ok\')" class="flex-1 btn bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-semibold active:scale-95 transition-all">Confirmar</button>' : '<button onclick="fecharModal(); toast(\'Redirecionando para pagamento...\', \'info\')" class="flex-1 btn bg-marca-600 hover:bg-marca-700 text-white py-2.5 rounded-xl text-sm font-semibold active:scale-95 transition-all">Pagar</button>') +
+                '<button onclick="fecharModal(); toast(\'Agendamento cancelado.\', \'erro\')" class="btn bg-gray-100 hover:bg-gray-200 text-red-600 px-4 py-2.5 rounded-xl text-sm font-semibold active:scale-95 transition-all">Cancelar</button>' +
+            '</div>' +
+        '</div>',
+        a.servico
+    );
+}
+</script>
+
+    <!-- TELAS -->
     </main>
   </div>
 
